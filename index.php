@@ -1,5 +1,5 @@
 <?php
-	require('inc/autoloader.php');
+	require('google-api-php-client/src/Google/autoload.php');
 	session_start();
 	$client = new driver;
 	$client -> setClientId("846496848444-ngt669h4jorpdg9dvrs14t26hq1emqhn.apps.googleusercontent.com");

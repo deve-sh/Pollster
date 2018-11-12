@@ -1,18 +1,10 @@
-<?php
-
-   require('connect.php');
-
-   $db = new dbdriver;
-
-   $connect = $db->connect('localhost','userr','password','test');
-
-   $query = $db->query("SELECT *  FROM keep_notes");
-
-   $mystring = $db -> escape("Sdsfad^7&@#\"'.2132-_+=");
-
-   echo ($mystring."<br><br>");
-
-   while($myname = $db -> fetch($query)){
-   	  echo $myname['title']."<br/><br/>";
-   }
-?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login to Voting application</title>
+</head>
+<body>
+	<a href="https://authorization-server.com/auth?response_type=code&
+  client_id=846496848444-ngt669h4jorpdg9dvrs14t26hq1emqhn.apps.googleusercontent.com&redirect_uri=http://localhost/console.php&scope=photos&state=1234zyx">Login With Google!</a>
+</body>
+</html>

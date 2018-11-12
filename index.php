@@ -7,8 +7,9 @@
 <html>
 <head>
 	<title>Pollster</title>
+	<?php include 'inc/styles.html'; ?>
 </head>
 <body>
-
+	
 </body>
 </html>

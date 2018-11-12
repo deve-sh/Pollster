@@ -15,7 +15,10 @@
 		include '../inc/installstyles.html';   // Installation Essentials.
 	?>
 </head>
-<body>
+<body class="installset">
+	<header>
+		Pollster!
+	</header>
 	<main>
 		<!-- SIGNUP FORM -->
 		<form action="installer.php" method="POST" id='installform'>
@@ -44,8 +47,10 @@
 			<input type="text" name="adminname" required placeholder="Admin Name"><br/><br/>
 			<input type="email" name="adminemail" required placeholder="Admin Email"><br/><br/>
 			<input type="password" name="adminpass" required placeholder="Admin Password"><br/><br/>
-			<input type="submit" name="submit" value="INSTALL" class="submitbutton">
-			<br/><br/>
+			
+			<div align="center">
+				<button type="submit" name="submit" value="INSTALL" class="submitbutton">INSTALL</button>
+			</div>
 		</form>
 	</main>
 </body>

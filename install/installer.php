@@ -9,8 +9,14 @@
 <html>
 <head>
 	<title>Installing Pollster</title>
+	<?php include '../inc/installstyles.html'; ?>
 </head>
-<body>
+<body class="installset">
+	<main>
+	<header>
+		Pollster!
+	</header>
+	<div id="installform">
 	<?php
 		if($_SESSION['installing']==true){ // If the user actually entered the installation through the home page.
 
@@ -91,7 +97,7 @@
 
 					if($db->query($query1)){
 						$successcounter++;
-						echo "<br/><br/>Created User Tables.";
+						echo "Created User Tables.";
 					}
 					else{
 						echo "<br/><br/>Failed to create User tables.";
@@ -158,32 +164,34 @@
 
 						if($writingsuccess==2)
 							echo "<br><br>Congratulations, Your Pollster App was installed.<br><br>
-								<a href='../index.php'><button class='finish'>Check it out!</button></a>";
+								<a href='../index.php'><button class='submitbutton'>Check it out!</button></a>";
 						else{
 							echo "<br><br>Sorry, your app could not be installed, please try again.";
-							echo "<br><br><a href='index.php'><button class='backbutton'>Back</button></a>";
+							echo "<br><br><a href='index.php'><button class='backbutton'><i class=\"fas fa-arrow-left fa-lg\"></i></button></a>";
 						}
 					}
 					else{
 						echo "<br><br>Sorry, your app could not be installed, please try again.";
-						echo "<br><br><a href='index.php'><button class='backbutton'>Back</button></a>";
+						echo "<br><br><a href='index.php'><button class='backbutton'><i class=\"fas fa-arrow-left fa-lg\"></i></button></a>";
 					}
 
 				}
 				else{
 					echo "<br/><br/>Connection Could Not be Established.";
-					echo "<br><br><a href='index.php'><button class='backbutton'>Back</button></a>";
+					echo "<br><br><a href='index.php'><button class='backbutton'><i class=\"fas fa-arrow-left fa-lg\"></i></button></a>";
 				}
 
 			}
 			else{
 				echo "<br><br>Something is wrong with the inputs.<br><br>Try Again.";
-				echo "<br><br><a href='index.php'><button class='backbutton'>Back</button></a>";
+				echo "<br><br><a href='index.php'><button class='backbutton'><i class=\"fas fa-arrow-left fa-lg\"></i></button></a>";
 			}
 		}
 		else{
 			// If the user directly came to this page. Redirect to install.php as the script is not installed. Otherwise he would have been at ../index.php due to redirection.
 		}
 	?>
+	</div>
+   </main>
 </body>
 </html>

@@ -1,5 +1,10 @@
 <?php
-include 'inc/connect.php';$host = 'localhost';
+
+error_reporting(0);
+
+include 'inc/connect.php';
+
+$host = 'localhost';
 $username = 'userr';
 $password = 'password';
 $dbname = 'test';
@@ -11,5 +16,4 @@ $agreement = 'This is to agree to the conditions that none of the Web Applicatio
 $db = new dbdriver;
 
 $db -> connect($host,$username,$password,$dbname);
-
 ?>

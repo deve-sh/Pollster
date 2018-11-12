@@ -1,0 +1,98 @@
+*{
+	box-sizing: border-box;
+	transition: 0.2s;
+}
+
+body{
+	background: #ffffff;
+	color: #343434;
+	font-family: Montserrat,Roboto,sans-serif;
+	padding: 0px;
+	margin: 0px;
+	overflow-x: hidden;
+	line-height: 1.6;
+	font-size: 15.5px;
+}
+
+/* Installation File Styles
+   The Installation Files have body with class 'installset'. */
+
+.installset header{
+	background: #2c97de;
+	color: #ffffff;
+	height: auto;
+	position: relative;
+	padding: 20px;
+}
+
+.installset main{
+	min-height: 100vh;
+	padding: 30px;
+	background: #2c97de;
+	overflow: auto;
+}
+
+#installform{       /* Installation Form */
+	background: #ffffff;
+	color: #343434;
+	margin: 0px;
+	box-shadow: 0 1px 3px 0 rgba(0,0,0,.3), 0 0 0 1px rgba(0,0,0,.04);
+	border-radius: 4px;
+	margin-top: 5px;
+	padding: 30px;
+	display: inline-block;
+}
+
+#installform input,textarea{
+	transition: 0.1s;
+}
+
+#installform input{
+	padding: 10px;
+	font-size: 15px;
+	border: 1px solid #cfcfcf;
+	border-radius: 3px;
+	width: 100%;
+	outline: none;
+}
+
+#installform textarea:focus{
+	border-left: 3px solid #506578;
+}
+
+#installform input:focus{
+	border-left: 3px solid #506578;	
+}
+
+#installform textarea{
+	outline: none;
+	font-family: sans-serif;
+	width: 100%;
+	line-height: 1.6;
+	height: 200px;
+	padding: 15px;
+	font-size: 15px;
+	border: 1px solid #cfcfcf;
+	border-radius: 3px;
+}
+
+.submitbutton{
+	display: inline-block;
+	padding: 15px;
+	background: #506578;
+	color: #ffffff;
+	box-shadow: 0 1px 3px 0 rgba(0,0,0,.3), 0 0 0 1px rgba(0,0,0,.04);
+	border: none;
+	cursor: pointer;
+	outline: none;
+	border-radius: 3px;
+}
+
+.backbutton{
+	border-radius: 50%;
+	border: none;
+	cursor: pointer;
+	padding: 20px;
+	background: #506578;
+	color: #ffffff;
+}

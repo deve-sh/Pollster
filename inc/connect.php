@@ -69,5 +69,14 @@
      			return false;
      		}
      	}
+
+          function numrows($query){
+               if($query){
+                    return mysqli_num_rows($query);
+               }
+               else{
+                    return 0;
+               }
+          }
      }
 ?>

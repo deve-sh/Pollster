@@ -96,3 +96,46 @@ body{
 	background: #506578;
 	color: #ffffff;
 }
+
+#examplebox{
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px;
+}
+
+/* MAIN CONTENT */
+
+.mainbody main{
+	padding: 0px;
+	margin: 0px;
+	min-height: 100vh;
+}
+
+/* POLL */
+
+#poll{
+	padding: 20px;
+}
+
+#polltitle{
+	display: inline-block;
+	padding: 10px;
+	text-align: left;
+}
+
+#polloptions{
+	padding: 10px;
+	width: 50%;
+	text-align: left;
+}
+
+.optionlister{
+	padding: 15px;
+	text-align: left;
+	cursor: pointer;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.46);
+	width: 100%;
+}
+
+.activevote{
+	background: #2c97de;
+	color: #ffffff;
+}

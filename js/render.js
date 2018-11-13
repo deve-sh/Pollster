@@ -50,14 +50,14 @@ function getpolldetails(pollid,userid){
 
 			console.log(opstring);
 
-			document.getElementById('polloptions').innerHTML+=opstring;
+			document.getElementById('polloptions').innerHTML+=opstring+"<div align='center'><a href='index.php'><button class='backbutton'><i class=\"fas fa-arrow-left fa-lg\"></i></button></a></div>";
 
 		}
 		else if(getpoll.responseText=="[]"){
-			document.getElementById('poll').innerHTML="<br><br>Poll Not Found!<br><br><button class='backbuttons'><i class=\"fas fa-arrow-left\"></i></button>";	
+			document.getElementById('poll').innerHTML="<br><br>Poll Not Found!<br><br><a href='index.php'><button class='backbutton'><i class=\"fas fa-arrow-left fa-lg\"></i></button></a>";	
 		}
 		else{
-			document.getElementById('poll').innerHTML=getpoll.responseText+"<br><br><button class='backbuttons'><i class=\"fas fa-arrow-left\"></i></button>";
+			document.getElementById('poll').innerHTML=getpoll.responseText+"<br><br><a href='index.php'><button class='backbutton'><i class=\"fas fa-arrow-left fa-lg\"></i></button></a>";
 		}
 		
 	}

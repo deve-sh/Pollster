@@ -189,7 +189,8 @@
 				echo "<br><br><a href='index.php'><button class='backbutton'><i class=\"fas fa-arrow-left fa-lg\"></i></button></a>";
 			}
 		}
-		else{
+		else
+		{
 			// If the user directly came to this page. Redirect to install.php as the script is not installed. Otherwise he would have been at ../index.php due to redirection.
 		}
 	?>

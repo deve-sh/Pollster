@@ -7,7 +7,6 @@ function getpolldetails(pollid,userid){
 		if(getpoll.responseText!=="Unauthorised." && getpoll.responseText!=="[]")
 		{
 			var json=JSON.parse(getpoll.responseText);
-			console.log(json);
 
 			// Since the request has been completely processed/parsed, now using the information.
 
@@ -40,17 +39,20 @@ function getpolldetails(pollid,userid){
 
 			// LOOP TO RENDER OPTIONS TO THE SCREEN OF THE USER
 
-			console.log(Object.keys(json[1].votes));
-
 			opstring="";
 
 			for(key in Object.keys(json[1].votes)){
-				opstring+=("<div class='optionlister' onclick='registervote("+pollid+","+userid+","+key+")'>"+Object.keys(json[1].votes)[key]+"</div><br><br>");
+				if(key!=json[2].uservote)
+					opstring+=("<div class='optionlister' onclick='registervote("+pollid+","+userid+","+key+")'>"+Object.keys(json[1].votes)[key]+"</div><br><br>");
+				else
+					opstring+=("<div class='optionlister activevote'>"+Object.keys(json[1].votes)[key]+"</div><br><br>");
 			}
 
-			console.log(opstring);
-
 			document.getElementById('polloptions').innerHTML+=opstring+"<div align='center'><a href='index.php'><button class='backbutton'><i class=\"fas fa-arrow-left fa-lg\"></i></button></a></div>";
+
+			if(json[2].uservote>=0){
+				document.getElementById('poll').innerHTML+=("<button class='removevote("+userid+","+pollid+")'>");
+			}
 
 		}
 		else if(getpoll.responseText=="[]"){
@@ -72,6 +74,4 @@ function renderresult(jsonob,userid){  // Function to render the result of a pol
 	var totalvotes=newob.totalvotes;
 	var voteob=newob.votes;
 
-	console.log(totalvotes);
-	console.log(voteob);
 }

@@ -13,16 +13,18 @@
 	<?php include 'inc/styles.html'; ?>
 </head>
 <body class="mainbody">
-	<main>
+	<main style="border-top: 6px solid #2c97de;">
 		<?php
+		  include 'header.php';
 		  if($pollid)
 		  {
 			if($_SESSION['polllog']==true){
 				$query=$db->query("SELECT * FROM ".$subscript."polls WHERE pollid='$pollid'");
 				if($db->numrows($query)!=0)
 				{
-					echo "<div id='poll' align='center'>
-					</div>";
+					echo "<br><div id='poll' align='center'>
+					</div>
+					<div id='errors'></div>";
 		?>
 		<script type="text/javascript">
 			var registervote = function(pollid,userid,optionid){
@@ -31,10 +33,24 @@
 
 				var register=new XMLHttpRequest();
 
-				register.open('GET','registervote.php?pollid='+pollid+'&userid='+userid+'&optionid='+optionid);
+				register.open('GET','registervote.php?pollid='+pollid+'&userid='+userid+'&optionid='+optionid); 
 
 				register.onload=function(){
-
+					if(register.responseText==='200'){
+						// If the register was successful.
+						location.reload(true); // Also, a hard refresh from the server.
+					}
+					else if(register.responseText==='Already Registered.'){
+						// Already voted for the same option.
+						document.getElementById('errors').innerHTML="<br>You have already voted for the same option.";
+					}
+					else if(register.responseText==='500'){ // Unsuccessful for some reason.
+						document.getElementById('errors').innerHTML="<br>An error occured for some reason. Try Again Later.";
+					}
+					else{
+						// Unauthorised access by an unknown user / Unregistered User. 
+						document.getElementById('errors').innerHTML="Unauthorised.";
+					}
 				}
 
 				register.send();

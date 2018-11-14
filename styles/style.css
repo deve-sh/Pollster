@@ -138,4 +138,11 @@ body{
 .activevote{
 	background: #2c97de;
 	color: #ffffff;
+	box-shadow: none;
+	border-radius: 3px;
+}
+
+#errors{
+	padding: 10px;
+	text-align: center;
 }

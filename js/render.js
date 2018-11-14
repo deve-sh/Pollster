@@ -8,6 +8,8 @@ function getpolldetails(pollid,userid){
 		{
 			var json=JSON.parse(getpoll.responseText);
 
+			console.log(json);
+
 			// Since the request has been completely processed/parsed, now using the information.
 
 			//  EXAMPLE :
@@ -49,9 +51,9 @@ function getpolldetails(pollid,userid){
 			}
 
 			document.getElementById('polloptions').innerHTML+=opstring+"<div align='center'><a href='index.php'><button class='backbutton'><i class=\"fas fa-arrow-left fa-lg\"></i></button></a></div>";
-
+			document.getElementById('polloptions').innerHTML+="<br><button onclick='renderresult("+json+","+userid+")'></button>";
 			if(json[2].uservote>=0){
-				document.getElementById('poll').innerHTML+=("<button class='removevote("+userid+","+pollid+")'>");
+				document.getElementById('poll').innerHTML+=("<button class='removevote("+userid+","+pollid+")'>REMOVE VOTE</button>"); // Remove Vote Button.
 			}
 
 		}

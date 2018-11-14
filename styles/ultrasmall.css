@@ -5,3 +5,10 @@
 .installset main{
 	padding: 15px;
 }
+
+/* POLL */
+
+#polloptions{
+	padding: 10px;
+	width: 100%;
+}

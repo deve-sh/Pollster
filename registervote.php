@@ -35,7 +35,7 @@ else if($pollid && $userid && $userid==$_SESSION['polluserid'] && $optionid>=0){
 			echo "Already Registered.";
 		else
 		{
-			if($db->query("UPDATE ".$subscript."pollvotes SET voteindex='$optionid' WHERE userid='$userid' AND pollid='$pollid' AND voteid='$voteid'")) // No injection.
+			if($db->query("UPDATE ".$subscript."pollvotes SET voteindex='$optionid' WHERE userid='$userid' AND pollid='$pollid' AND voteid='$voteid'")) // No injection and no need to update no of votes of user and so on.
 				echo "200";
 			else
 				echo "500";

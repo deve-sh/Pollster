@@ -2,8 +2,6 @@
 session_start();
 include 'inc/checker.php';
 include 'inc/config.php';
-$_SESSION['polllog']=true;
-$_SESSION['polluserid']=1;
 
 // Registering Vote to a poll!
 
@@ -26,18 +24,36 @@ else if($pollid && $userid && $userid==$_SESSION['polluserid'] && $optionid>=0){
 		
 		if($optionid<$nooptions)
 		{
-			if($db->query("INSERT INTO ".$subscript."pollvotes(pollid,userid,voteindex) VALUES('$pollid','$userid','$optionid')"))
+			// Getting the assoc array to edit the results.
+
+			$result=unserialize($checker1['results']);
+
+			// Editing
+
+			$result=($checker1['results']);
+
+			$results=unserialize($result);
+
+			foreach ($results as $key => $value) {
+				if($key==$optionid){
+					$results[$key]=$results[$key]+1;
+				}
+			}
+
+			$results=serialize($results);  // To be stored inside the Database.
+
+			if($db->query("INSERT INTO ".$subscript."pollvotes(pollid,userid,voteindex) VALUES('$pollid','$userid','$optionid')") && $db->query("UPDATE ".$subscript."polls SET totalvotes=totalvotes+1") && $db->query("UPDATE ".$subscript."polls SET results='$results' WHERE pollid='$pollid'"))
 			{
 				echo "200";      // No error. Successful execution.
 			}
 			else{
-				echo "500";
+				echo "500";     // Some Error.
 			}
 		}
 		else
-			echo "300";      // Some error.
+			echo "300";      // Invalid Option ID.
 	}
-	else if($db->numrows($sampquery)>0){
+	else if($db->numrows($sampquery)>0 && $db->numrows($retquery)>0){
 			$checkerobject=$db->fetch($retquery);
 			// Obtained Object to check which option had gotten the vote.
 			
@@ -59,7 +75,7 @@ else if($pollid && $userid && $userid==$_SESSION['polluserid'] && $optionid>=0){
 			}
 		}
 		else{
-			echo "300";
+			echo "300";    // Invalid Option ID.
 		}
 		}
 		else{

@@ -1,27 +1,16 @@
 <?php
 
-   $x=array("assoc" => "yay","myname" => "yayay");
+   $x=array("assoc" => "yay","m" => "yayay");
 
    $str="";
    foreach ($x as $key => $value) {              // Better way to map.
-        $str.="$".$key." = '".(string)$value."';<br>";
+      if($key=="m")
+         $x[$key]="y";
+      $str.="$".$key." = '".(string)$value."';<br>";
    }
 
-   echo $str."<br><br>";
+   echo $str;
 
-   $myarray=array(
-   		"0"=>40,
-   		"1"=>45,
-   		"2"=>5,
-   		"3"=>0
-   );
+   var_dump($x);
 
-   echo serialize($myarray);
-
-   echo "<br>
-   {";
-   foreach ($myarray as $key => $value) {
-   		echo $key." : ".$value."<br>";
-   }
-   echo "}<br>";
 ?>

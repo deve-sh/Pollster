@@ -2,8 +2,7 @@
 session_start();
 include 'inc/checker.php';
 include 'inc/config.php';
-$_SESSION['polluserid']=1;
-$_SESSION['polllog']=true;
+
 $pollid=$_GET['pollid'];
 $userid=$_GET['userid'];
 

@@ -1,3 +1,7 @@
+/*
+	File pertaining to all the rendering stuff of the polls.
+*/
+
 function getpolldetails(pollid,userid){
 	var getpoll=new XMLHttpRequest();
 
@@ -59,6 +63,28 @@ function getpolldetails(pollid,userid){
 
 }
 
+/* Function to render the results of the poll. */
+
 function renderresult(pollid,userid){  // Function to render the result of a poll in real time to the screen.
-	
+	var render=new XMLHttpRequest();
+
+	render.open('GET','getresults.php?userid='+userid+'&pollid='+pollid);
+
+	render.send();
+
+	render.onload=function(){
+		if(render.responseText=='350'){
+			document.getElementById('polls').innerHTML="<br>Poll Not Found.<br>";
+		}
+		else if(render.responseText=='500')
+		{
+			document.getElementById('polls').innerHTML="<br>An Error Occured. Kindly Try Again.<br>";
+		}
+		else if(render.responseText=='400'){
+			document.getElementById('polls').innerHTML="<br>Unauthorised.";
+		}
+		else{
+			
+		}
+	}
 }

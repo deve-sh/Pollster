@@ -2,9 +2,9 @@
 	session_start();
 	include 'inc/checker.php';
 	include 'inc/config.php';
-	$_SESSION['polllog']=true;
-	$_SESSION['polluserid']=1;
+	
 	$pollid=$_GET['pollid'];
+	$userid=$_GET['userid'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,7 +18,8 @@
 		  include 'header.php';
 		  if($pollid)
 		  {
-			if($_SESSION['polllog']==true){
+			if($_SESSION['polllog']==true && $_SESSION['polluserid'] && $userid && $userid==$_SESSION['polluserid'])
+			{
 				$query=$db->query("SELECT * FROM ".$subscript."polls WHERE pollid='$pollid'");
 				if($db->numrows($query)!=0)
 				{
@@ -48,6 +49,8 @@
 				register.open('GET','registervote.php?pollid='+pollid+'&userid='+userid+'&optionid='+optionid); 
 
 				register.onload=function(){
+
+					console.log(register.responseText);
 					if(register.responseText.includes('200')){
 						// If the register was successful.
 						location.reload(true); // Also, a hard refresh from the server.
@@ -77,17 +80,17 @@
 				}
 				else
 				{
-					echo "<br><br>No such poll found.";
+					echo "<br><br>&nbsp&nbsp&nbspNo such poll found.";
 					header("refresh:1;url=index.php");
 					exit();
 				}
 			}
 			else{
-				echo "<br><br>You need to login in order to view polls.";
+				echo "<br><br>&nbsp&nbsp&nbspYou need to login in order to view polls.";
 			}
 		  }
 		  else{
-		  	echo "<br><br>Valid Poll Not Found!";
+		  	echo "<br><br>&nbsp&nbsp&nbspValid Poll Not Found!";
 		  	header("refresh:1;url=index.php");
 		  	exit();
 		  }

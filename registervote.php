@@ -62,13 +62,34 @@ else if($pollid && $userid && $userid==$_SESSION['polluserid'] && $optionid>=0){
 			
 			$prevoption=$checkerobject['voteindex'];
 			$voteid=$checkerobject['voteid'];
+
 		if($optionid<$nooptions)
 		{
 			if($prevoption==$optionid)
 				echo "Already Registered.";
 			else
 			{
-				if($db->query("UPDATE ".$subscript."pollvotes SET voteindex='$optionid' WHERE userid='$userid' AND pollid='$pollid' AND voteid='$voteid'")) // No injection and no need to update no of votes of user and so on.
+				$result=unserialize($checker1['results']);
+
+				// Editing
+
+				$result=($checker1['results']);
+
+				$results=unserialize($result);
+
+				foreach ($results as $key => $value) {
+					if($key==$prevoption){
+						$results[$key]=$results[$key]-1;
+					}
+
+					if($key==$optionid){
+						$results[$key]=$results[$key]+1;
+					}
+				}
+
+				$results=serialize($results);  // To be stored inside the Database.
+
+				if($db->query("UPDATE ".$subscript."pollvotes SET voteindex='$optionid' WHERE userid='$userid' AND pollid='$pollid' AND voteid='$voteid'") && $db->query("UPDATE ".$subscript."polls SET results='$results' WHERE pollid='$pollid'")) // No injection and no need to update no of votes of user and so on.
 					echo "200";
 				else
 					echo "500";

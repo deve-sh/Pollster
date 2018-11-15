@@ -73,6 +73,8 @@ function renderresult(pollid,userid){  // Function to render the result of a pol
 	render.send();
 
 	render.onload=function(){
+
+		// Getting rid of all the errors first.
 		if(render.responseText=='350'){
 			document.getElementById('polls').innerHTML="<br>Poll Not Found.<br>";
 		}
@@ -83,7 +85,12 @@ function renderresult(pollid,userid){  // Function to render the result of a pol
 		else if(render.responseText=='400'){
 			document.getElementById('polls').innerHTML="<br>Unauthorised.";
 		}
+		else if(render.responseText==='100'){
+			document.getElementById('polls').innerHTML="<br>No Votes so far.";		
+		}
 		else{
+			// If no errors were encountered.
+
 			
 		}
 	}

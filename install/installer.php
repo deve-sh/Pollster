@@ -87,7 +87,7 @@
 					
 					$query1="CREATE TABLE ".$subscript."users(id integer primary key auto_increment,name text not null,email varchar(255) unique not null,password varchar(255) not null,npolls integer,photo varchar(255) not null)";
 
-					$query2="CREATE TABLE ".$subscript."polls(pollid integer primary key auto_increment, userid integer references ".$subscript."users(id) on update set null on delete cascade, title text not null,options text not null /*JSON*/,correct text not null /* Another JSON */,results text not null /*Yet Anothr JSON*/,dated timestamp)";
+					$query2="CREATE TABLE ".$subscript."polls(pollid integer primary key auto_increment, userid integer references ".$subscript."users(id) on update set null on delete cascade, title text not null,nooptions integer not null,options text not null /*JSON*/,correct text not null /* Another JSON */,totalvotes integer not null,results text not null /*Yet Anothr JSON*/,dated timestamp)";
 
 					$query3="CREATE TABLE ".$subscript."pollvotes(voteid integer primary key auto_increment,pollid integer references ".$subscript."polls(pollid) on update set null on delete cascade,userid integer references ".$subscript."users(id) on delete cascade on update set null,voteindex integer not null)";
 

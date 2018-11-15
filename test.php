@@ -9,7 +9,19 @@
 
    echo $str."<br><br>";
 
-   include 'inc/config.php';
-   $userid=1;
-   $pollid=1;
+   $myarray=array(
+   		"0"=>40,
+   		"1"=>45,
+   		"2"=>5,
+   		"3"=>0
+   );
+
+   echo serialize($myarray);
+
+   echo "<br>
+   {";
+   foreach ($myarray as $key => $value) {
+   		echo $key." : ".$value."<br>";
+   }
+   echo "}<br>";
 ?>

@@ -27,6 +27,18 @@
 					<div id='errors'></div>";
 		?>
 		<script type="text/javascript">
+			var updatevote = function(userid,pollid,optionid){
+				var updater = new XMLHttpRequest();
+
+				updater.open('GET','apis/change.php?userid='+userid+'&pollid='+pollid+'&optionid='+optionid);
+
+				updater.onload=function(){
+
+				}
+
+				updater.send();
+			}
+
 			var registervote = function(pollid,userid,optionid){
 				
 				// Function to register vote in realtime.
@@ -36,7 +48,7 @@
 				register.open('GET','registervote.php?pollid='+pollid+'&userid='+userid+'&optionid='+optionid); 
 
 				register.onload=function(){
-					if(register.responseText==='200'){
+					if(register.responseText.includes('200')){
 						// If the register was successful.
 						location.reload(true); // Also, a hard refresh from the server.
 					}
@@ -47,9 +59,12 @@
 					else if(register.responseText==='500'){ // Unsuccessful for some reason.
 						document.getElementById('errors').innerHTML="<br>An error occured for some reason. Try Again Later.";
 					}
+					else if(register.responseText==='300'){
+						document.getElementById('errors').innerHTML="<br>Invalid Option";
+					}
 					else{
 						// Unauthorised access by an unknown user / Unregistered User. 
-						document.getElementById('errors').innerHTML="Unauthorised.";
+						document.getElementById('errors').innerHTML="<br>Unauthorised.";
 					}
 				}
 

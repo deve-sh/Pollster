@@ -31,8 +31,12 @@ function getpolldetails(pollid,userid){
 			    ]
 			*/
 
-			document.getElementById('poll').innerHTML=("<div id='polltitle'></div><br><br><div id='polloptions' align='center'></div>");
+			document.getElementById('poll').innerHTML=("<div id='polltitle'></div><div id='polldesc' align='center'></div><br><br><div id='polloptions' align='center'></div>");
 			document.getElementById('polltitle').textContent=json[0].title;
+
+			// Details of the poll to be printed now.
+
+			document.getElementById('polldesc').innerHTML+=("Date Created : "+json[0].date_created+"<br>Last Updated : "+json[0].last_updated);
 			
 
 			// LOOP TO RENDER OPTIONS TO THE SCREEN OF THE USER
@@ -100,8 +104,7 @@ function renderresult(pollid,userid){  // Function to render the result of a pol
 			for(var i=0;i<resultsjson[0].options.length;i++)
 			{
 				percentage=((resultsjson[0].results[i])/totalvotes*100);
-				console.log((resultsjson[0].results[i]));
-				resultstring+=("<div class='optionlister' style='background : linear-gradient(90deg,#2c97de "+percentage+"%,#343434 "+percentage+"%);border-radius: 3px; box-shadow:none;color: #ffffff;'>"+resultsjson[0].options[i]+"</div><br><br>");
+				resultstring+=("<div class='optionlister' style='background : linear-gradient(90deg,#2c97de "+percentage+"%,#343434 "+percentage+"%);border-radius: 3px; box-shadow:none;color: #ffffff;'>"+resultsjson[0].options[i]+" - &nbsp&nbsp"+percentage.toPrecision(3)+"%</div><br><br>");
 			}
 
 			document.getElementById('polloptions').innerHTML="";
@@ -109,3 +112,5 @@ function renderresult(pollid,userid){  // Function to render the result of a pol
 		}
 	}
 }
+
+// END

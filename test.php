@@ -13,4 +13,7 @@
 
    var_dump($x);
 
+   $m=date('Y-m-d');
+
+   echo $m;
 ?>

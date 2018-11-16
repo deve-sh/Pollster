@@ -124,7 +124,15 @@ body{
 #polltitle{
 	display: inline-block;
 	padding: 10px;
+	font-size: 20px;
 	text-align: left;
+}
+
+#polldesc{
+	width: 100%;
+	padding: 0px;
+	text-align: center;
+	color: gray;
 }
 
 #polloptions{

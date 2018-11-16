@@ -22,7 +22,9 @@ if($_SESSION['polllog']==true && $userid && $userid==$_SESSION['polluserid'])
      	   echo "{";
      	   echo '"title":"'.$result['title']."\",";
      	   echo '"options":'.$result['options'].",";
-         echo '"totalvotes":'.$result['totalvotes']."";
+         echo '"totalvotes":'.$result['totalvotes'].",";
+         echo '"date_created":"'.$result['date_created'].'",';
+         echo '"last_updated":"'.$result['updated'].'"';
      	   echo "},";
 
      	   // Now the voting results.

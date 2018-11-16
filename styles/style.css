@@ -181,3 +181,20 @@ body{
 	padding: 10px;
 	text-align: center;
 }
+
+/* HEADER */
+
+
+/* FOOTER */
+
+footer{
+	background: #212529;
+	padding: 30px;
+	height: auto;
+	color: #868e96;
+}
+
+footer .header{
+	color: #ffffff;
+	font-size: 20px;
+}

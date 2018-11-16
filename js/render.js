@@ -51,10 +51,10 @@ function getpolldetails(pollid,userid){
 			}
 
 			document.getElementById('polloptions').innerHTML+=opstring+"<div align='center'><a href='index.php'><button class='backbutton'><i class=\"fas fa-arrow-left fa-lg\"></i></button></a></div>";
-			document.getElementById('polloptions').innerHTML+="<br><button onclick='renderresult("+pollid+","+userid+")' class='viewpanel'>View Results</button>";
+			document.getElementById('polloptions').innerHTML+="<br><div align='center'><button onclick='renderresult("+pollid+","+userid+")' class='removebutton'>View Results</button></div>";
 			
 			if(json[1].uservote>=0)
-				document.getElementById('poll').innerHTML+=("<button class='removevote("+userid+","+pollid+")'>REMOVE VOTE</button>"); // Remove Vote Button.
+				document.getElementById('poll').innerHTML+=("<div align='center'><button class='removebutton' onclick='removevote("+userid+","+pollid+")'>Remove Vote</button></div>"); // Remove Vote Button.
 
 		}
 		else if(getpoll.responseText=="[]")
@@ -90,7 +90,8 @@ function renderresult(pollid,userid){  // Function to render the result of a pol
 			document.getElementById('poll').innerHTML="<br>Unauthorised.";
 		}
 		else if(render.responseText==='100'){
-			document.getElementById('polloptions').innerHTML="<br>No Votes so far.";		
+			document.getElementById('polloptions').innerHTML="<br>No Votes so far.<br>";
+			document.getElementById('polloptions').innerHTML+="<br><div align='center'><a href='index.php'><button class='backbutton'><i class=\"fas fa-arrow-left fa-lg\"></i></button></a><br><br><button class='removebutton' style='margin-top: 10px;' onclick='getpolldetails("+pollid+","+userid+")'>View Vote Panel</button></div>";		
 		}
 		else{
 			// If no errors were encountered.
@@ -108,7 +109,7 @@ function renderresult(pollid,userid){  // Function to render the result of a pol
 			}
 
 			document.getElementById('polloptions').innerHTML="";
-			document.getElementById('polloptions').innerHTML+=resultstring+"<br><div align='center'><a href='index.php'><button class='backbutton'><i class=\"fas fa-arrow-left fa-lg\"></i></button></a></div><br><button class='viewpanel' onclick='getpolldetails("+pollid+","+userid+")'>View Vote Panel</button>";
+			document.getElementById('polloptions').innerHTML+=resultstring+"<br><div align='center'><a href='index.php'><button class='backbutton'><i class=\"fas fa-arrow-left fa-lg\"></i></button></a><br><button class='removebutton' onclick='getpolldetails("+pollid+","+userid+")'>View Vote Panel</button></div>";
 		}
 	}
 }

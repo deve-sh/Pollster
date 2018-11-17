@@ -85,7 +85,7 @@
 
 					$megaarray=array_merge($dbvars,$appvars,$adminvars);
 					
-					$query1="CREATE TABLE ".$subscript."users(id integer primary key auto_increment,name text not null,email varchar(255) unique not null,password varchar(255) not null,npolls integer,photo varchar(255) not null)";
+					$query1="CREATE TABLE ".$subscript."users(id integer primary key auto_increment,name text not null,email varchar(255) unique not null,password varchar(255) not null,npolls integer,photo varchar(255) not null,retkey varchar(255) not null)";
 
 					$query2="CREATE TABLE ".$subscript."polls(pollid integer primary key auto_increment, userid integer references ".$subscript."users(id) on update set null on delete cascade, title text not null,nooptions integer not null,options text not null /*JSON*/,date_created text not null,totalvotes integer not null,results text not null /*Yet Anothr JSON*/,updated timestamp not null)";
 
@@ -150,7 +150,7 @@
 						$configstring.="\$db = new dbdriver;\n\n";           // DB Driver Object Instance.
 						$configstring.="\$db -> connect(\$host,\$username,\$password,\$dbname);";
 
-						$configstring.="\n?>";  // End of String
+						$configstring.="\ninclude 'inc/interconfig.php';\n?>";  // End of String
 
 						$writingsuccess=0;
 
@@ -191,6 +191,8 @@
 		}
 		else
 		{
+			header("refresh:0;url=../index.php");
+			exit();
 			// If the user directly came to this page. Redirect to install.php as the script is not installed. Otherwise he would have been at ../index.php due to redirection.
 		}
 	?>

@@ -70,6 +70,8 @@
 					}
 				}
 
+				// One Hovewer cannot delete a poll directly from the poll screen, one has to delete it using their User CP.
+
 				register.send();
 			}
 		</script>
@@ -78,7 +80,7 @@
 					echo "<script src='js/render.js'></script>";
 					echo "<script>getpolldetails(".$pollid.",".$_SESSION['polluserid'].")</script>";
 					if($_SESSION['polladmin']==true){
-						echo "<div align='center'><a href='removepoll.php'><button class='removebutton'>Remove Poll</button></a></div><br>";;
+						echo "<div align='center'><a href='removepoll.php?pollid=".$pollid."'><button class='removebutton'>Remove Poll</button></a></div><br>";;
 					}
 				}
 				else

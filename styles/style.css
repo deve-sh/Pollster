@@ -90,6 +90,10 @@ body{
 	border-radius: 3px;
 }
 
+/*
+ Beautiful Text Shadow : 0 1px 4px rgba(0,0,0,0.1);
+*/
+
 .backbutton{
 	border-radius: 50%;
 	border: none;
@@ -191,10 +195,54 @@ footer{
 	background: #212529;
 	padding: 30px;
 	height: auto;
-	color: #868e96;
+	color: #868e96; /* Colour of Footer Text */
 }
 
 footer .header{
 	color: #ffffff;
 	font-size: 20px;
+}
+
+/* PLACEHOLDER FOR DIVISIONS */
+
+[contentEditable=true]{
+	outline: none;
+	transition: 0s;
+}
+
+[contentEditable=true]:focus{
+	border-bottom: 1px solid #000000;
+}
+
+[contentEditable=true]:empty:not(:focus):before{
+    content:attr(placehold);
+    color: gray;
+}
+
+/* POLL CREATION INPUTS */
+
+.pollinputtitle{
+	padding: 15px;
+	padding-bottom: 3px;
+	display: inline-block;
+	font-size: 30px;
+	font-family: sans-serif;
+}
+
+.createpoll input{
+	padding: 15px;
+	display: inline-block;
+	width: 100%;
+}
+
+.createpoll select{
+	border-radius: 3px;
+	padding: 15px;
+	outline: none;
+	font-family: sans-serif;
+}
+
+.pollinputoptions{
+	padding: 10px;
+	display: inline-block;
 }

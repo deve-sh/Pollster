@@ -2,7 +2,6 @@
 	session_start();
 	include 'inc/checker.php';
 	include 'inc/config.php';
-	$_SESSION['polladmin']=true;
 	$pollid=$_GET['pollid'];
 	$userid=$_GET['userid'];
 ?>
@@ -16,7 +15,6 @@
 	<main style="border-top: 6px solid #2c97de;">
 		<?php
 		  include 'header.php';
-		  include 'inc/interconfig.php';
 		  if($pollid)
 		  {
 			if($_SESSION['polllog']==true && $_SESSION['polluserid'] && $userid && $userid==$_SESSION['polluserid'])
@@ -75,6 +73,7 @@
 				register.send();
 			}
 		</script>
+		<script type="text/javascript" src="js/removevote.js"></script>
 		<?php
 					echo "<script src='js/render.js'></script>";
 					echo "<script>getpolldetails(".$pollid.",".$_SESSION['polluserid'].")</script>";

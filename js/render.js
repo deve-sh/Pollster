@@ -12,8 +12,6 @@ function getpolldetails(pollid,userid){
 		{
 			var json=JSON.parse(getpoll.responseText);
 
-			console.log(json);
-
 			// Since the request has been completely processed/parsed, now using the information.
 
 			//  EXAMPLE :
@@ -54,7 +52,7 @@ function getpolldetails(pollid,userid){
 			document.getElementById('polloptions').innerHTML+="<br><div align='center'><button onclick='renderresult("+pollid+","+userid+")' class='removebutton'>View Results</button></div>";
 			
 			if(json[1].uservote>=0)
-				document.getElementById('poll').innerHTML+=("<div align='center'><button class='removebutton' onclick='removevote("+userid+","+pollid+")'>Remove Vote</button></div>"); // Remove Vote Button.
+				document.getElementById('poll').innerHTML+=("<div align='center'><button class='removebutton' onclick='removevote("+pollid+")'>Remove Vote</button></div>"); // Remove Vote Button.
 
 		}
 		else if(getpoll.responseText=="[]")
@@ -97,8 +95,6 @@ function renderresult(pollid,userid){  // Function to render the result of a pol
 			// If no errors were encountered.
 
 			var resultsjson=JSON.parse(render.responseText);
-
-			console.log(resultsjson);
 
 			var resultstring="",totalvotes=resultsjson[0].totalvotes,vote=0,percentage=100,colorstring="";
 

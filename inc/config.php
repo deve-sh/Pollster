@@ -1,6 +1,7 @@
 <?php
 
 include 'inc/connect.php';
+include 'inc/interconfig.php';
 
 $host = 'localhost';
 $username = 'userr';

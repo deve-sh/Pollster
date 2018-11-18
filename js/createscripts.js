@@ -1,18 +1,3 @@
-function setops(number){  // Function to set the number of options to the document.
-	if(number>0){
-		document.getElementById('options').innerHTML=""; // Clearing any previous possible made options.
-		var opstring="";
-
-		for(var i=1;i<=number;i++){
-			opstring+="<div class='pollinputoptions' contenteditable='true' placehold='Option "+i+"'></div><br><br>";
-		}
-
-		opstring+="<button class='submitbutton' onclick='createpoll()'>Create Poll</button>";
-
-		document.getElementById('options').innerHTML+=opstring;
-	}
-}
-
 function errorchecker(){
 	var error=0;
 
@@ -44,17 +29,28 @@ function createpoll(){     // Function to organise and create the poll and send 
 
 		// Now creating an AJAX Request.
 
+		var now = new Date();
+
+		now=now.toString();
+
+		now=now.substring(4,15);
+
 		var create=new XMLHttpRequest();
 
-		create.open('GET','finalizepoll.php?options='+(optionarray)+'&nooptions='+document.getElementsByClassName('pollinputoptions').length+'&polltitle='+polltitle+'');
+		console.log('finalizepoll.php?options='+optionarray.toString()+'&nooptions='+document.getElementsByClassName('pollinputoptions').length+'&polltitle='+polltitle+'&time='+encodeURIComponent(now)+'');
+
+		create.open('GET','finalizepoll.php?options='+optionarray+'&nooptions='+document.getElementsByClassName('pollinputoptions').length+'&polltitle='+encodeURIComponent(polltitle)+'&time='+encodeURIComponent(now)+'');
 
 		create.onload=function(){
 			var path=(window.location.protocol.toString()+"://"+window.location.hostname.toString()+window.location.pathname.toString()).toString();
+			
 			path=path.split("/").slice(0,-1).join("/");   // Got current path.
 
-			if(create.responseText==='200'){
-				self.location=(path+'/index.php');
-			}else{
+			if(create.responseText=='200'){
+				self.location=('index.php');
+			}
+			else{
+				console.log(create.responseText);
 				document.getElementById('errors').innerHTML="<br><br>An Unknown Error Occured. Please Try Again Later.";
 			}
 		}
@@ -63,5 +59,20 @@ function createpoll(){     // Function to organise and create the poll and send 
 	}
 	else{
 		document.getElementById('errors').innerHTML="<br><br>Invalid Entries.";
+	}
+}
+
+function setops(number){  // Function to set the number of options to the document.
+	if(number>0){
+		document.getElementById('options').innerHTML=""; // Clearing any previous possible made options.
+		var opstring="";
+
+		for(var i=1;i<=number;i++){
+			opstring+="<div class='pollinputoptions' contenteditable='true' placehold='Option "+i+"'></div><br><br>";
+		}
+
+		opstring+="<button class='submitbutton' onclick='createpoll()'>Create Poll</button>";
+
+		document.getElementById('options').innerHTML+=opstring;
 	}
 }

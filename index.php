@@ -2,6 +2,7 @@
 	session_start();
 	include 'inc/checker.php';
 	include 'inc/config.php';
+	$_SESSION['polladmin']=true;
 	$_SESSION['polluserid']=1;
 	$_SESSION['polllog']=true;
 ?>
@@ -33,7 +34,7 @@
 		<?php include 'header.php'; ?>
 		<div style="padding: 20px; overflow: auto;">
 		<?php
-			$pollquery=$db->query("SELECT * FROM ".$subscript."polls");   // Extracting all the polls in the database.
+			$pollquery=$db->query("SELECT * FROM ".$subscript."polls ORDER BY date_created DESC");   // Extracting all the polls in the database.
 
 			if($db->numrows($pollquery)<=0){       // If no polls have been created so far. Display a message.
 				?>

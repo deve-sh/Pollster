@@ -28,3 +28,13 @@
 	width: 45%;
 	text-align: center;
 }
+
+/* HEADER */
+
+#header .left{
+	width: 30%;
+}
+
+#header .right{
+	width: 70%;
+}

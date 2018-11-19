@@ -140,6 +140,7 @@ button{
 
 .mainbody main{
 	padding: 0px;
+	overflow: auto;        
 	margin: 0px;
 	min-height: 100vh;
 }
@@ -249,4 +250,57 @@ footer .header{
 .pollinputoptions{
 	padding: 10px;
 	display: inline-block;
+}
+
+/* Polls In The index.php file. */
+
+.nopolls{
+	padding-top: 15vh;
+}
+
+.nopollsmessage{
+	padding: 40px;
+	display: inline-block;
+}
+
+.pollbody{
+	display: inline-block;
+	float: left;
+	margin-left: 2%;
+	padding: 20px;
+	overflow: auto;
+	border-radius: 3px;
+	font-size: 17px;
+	box-shadow: 0 1px 3px 0 rgba(0,0,0,.3), 0 0 0 1px rgba(0,0,0,.04);
+}
+
+.pollbody a{
+	color: #212121;
+	padding: 8px 16px;
+	text-decoration: none;
+}
+
+.polltitle{
+	font-size: 18px;
+	width: 100%;
+	clear: both;
+	text-align: center;
+	padding: 10px;
+}
+
+.polldetails .left{
+	padding: 10px;
+	font-size: 13px;
+	float: left;
+	text-align: center;
+	width: 20%;
+}
+
+.polldetails .right{
+	padding: 10px;
+	text-align: right;
+	font-size: 13px;
+	float: right;
+	width: 75%;
+	word-wrap: break-word;
 }

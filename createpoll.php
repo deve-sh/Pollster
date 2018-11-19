@@ -29,6 +29,8 @@
 					<br><br>
 					<div id='options'></div>
 					<div id='errors'></div>
+					<br>
+					<a href='<?php echo $_SERVER['HTTP_REFERER']; ?>'><button class="backbutton"><i class="fas fa-arrow-left fa-lg"></i></button></a>
 				</div>
 			</div>
 		<?php

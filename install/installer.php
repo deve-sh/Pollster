@@ -90,7 +90,7 @@
 
 					$megaarray=array_merge($dbvars,$appvars,$adminvars);
 					
-					$query1="CREATE TABLE ".$subscript."users(id integer primary key auto_increment,name text not null,email varchar(255) unique not null,password varchar(255) not null,npolls integer,photo varchar(255) not null,securitykey varchar(255) not null)";
+					$query1="CREATE TABLE ".$subscript."users(id integer primary key auto_increment,name text not null,email varchar(255) unique not null,password varchar(255) not null,npolls integer,photo varchar(255) not null,securitykey varchar(255) not null,isadmin boolean not null)";
 
 					$query2="CREATE TABLE ".$subscript."polls(pollid integer primary key auto_increment, userid integer references ".$subscript."users(id) on update set null on delete cascade, title text not null,nooptions integer not null,options text not null /*JSON*/,date_created text not null,results text not null /*Yet Anothr JSON*/,updated timestamp not null)";
 
@@ -102,7 +102,7 @@
 
 					$adminvars['adminpass']=password_hash($adminvars['adminpass'],PASSWORD_BCRYPT);       // BCRYPT ALGORITHM
 
-					$query4="INSERT INTO ".$subscript."users(name,email,password,npolls,photo,securitykey) VALUES('".$adminvars['adminname']."','".$adminvars['adminemail']."','".$adminvars['adminpass']."',0,'files/default.jpeg','".password_hash($securitykey,PASSWORD_BCRYPT)."')";
+					$query4="INSERT INTO ".$subscript."users(name,email,password,npolls,photo,securitykey,isadmin) VALUES('".$adminvars['adminname']."','".$adminvars['adminemail']."','".$adminvars['adminpass']."',0,'files/default.jpeg','".password_hash($securitykey,PASSWORD_BCRYPT)."',true)";
 
 					if($db->query($query1)){
 						$successcounter++;

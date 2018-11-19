@@ -12,3 +12,19 @@
 	padding: 10px;
 	width: 100%;
 }
+
+/* Polls at index.php */
+
+.pollbody{
+	width: 100%;
+}
+
+.polldetails .left{
+	width: 45%;
+	text-align: center;
+}
+
+.polldetails .right{
+	width: 45%;
+	text-align: center;
+}

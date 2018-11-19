@@ -13,16 +13,18 @@ if($_SESSION['polllog']==true && $userid && $userid==$_SESSION['polluserid'])
    {
    	   $query=$db->query("SELECT * FROM ".$subscript."polls WHERE pollid='$pollid'");
 
-   	   if($db->numrows($query)){
+   	   if($db->numrows($query)>0){
    	   	 
          $result=$db->fetch($query);
      	   
          // First printing the main details : 
+
+         $totalvotes=$db->numrows($db->query("SELECT * FROM ".$subscript."pollvotes WHERE pollid='$pollid'"));
      	   
      	   echo "{";
      	   echo '"title":"'.$result['title']."\",";
      	   echo '"options":'.$result['options'].",";
-         echo '"totalvotes":'.$result['totalvotes'].",";
+         echo '"totalvotes":'.$totalvotes.",";
          echo '"date_created":"'.$result['date_created'].'",';
          echo '"last_updated":"'.$result['updated'].'"';
      	   echo "},";

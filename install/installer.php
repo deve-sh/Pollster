@@ -4,6 +4,7 @@
 
    // If the script has not been already installed : 
    include '../inc/connect.php';
+   include '../inc/salt.php';          // For the security key.
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,7 +66,11 @@
 
 					// First delete any sort of databases from previously failed installations.
 
-					$db->query("DROP TABLE IF EXISTS ".$subscript."users,".$subscript."polls CASCADE,".$subscript."pollvotes CASCADE");
+					$db->query("DROP TABLE IF EXISTS ".$subscript."pollvotes CASCADE");
+
+					$db->query("DROP TABLE IF EXISTS ".$subscript."polls CASCADE");
+
+					$db->query("DROP TABLE IF EXISTS ".$subscript."users");
 
 					// Loops to Escape every single string to avoid XXS Attacks or SQL Injection.
 
@@ -85,17 +90,19 @@
 
 					$megaarray=array_merge($dbvars,$appvars,$adminvars);
 					
-					$query1="CREATE TABLE ".$subscript."users(id integer primary key auto_increment,name text not null,email varchar(255) unique not null,password varchar(255) not null,npolls integer,photo varchar(255) not null,retkey varchar(255) not null)";
+					$query1="CREATE TABLE ".$subscript."users(id integer primary key auto_increment,name text not null,email varchar(255) unique not null,password varchar(255) not null,npolls integer,photo varchar(255) not null,securitykey varchar(255) not null)";
 
-					$query2="CREATE TABLE ".$subscript."polls(pollid integer primary key auto_increment, userid integer references ".$subscript."users(id) on update set null on delete cascade, title text not null,nooptions integer not null,options text not null /*JSON*/,date_created text not null,totalvotes integer not null,results text not null /*Yet Anothr JSON*/,updated timestamp not null)";
+					$query2="CREATE TABLE ".$subscript."polls(pollid integer primary key auto_increment, userid integer references ".$subscript."users(id) on update set null on delete cascade, title text not null,nooptions integer not null,options text not null /*JSON*/,date_created text not null,results text not null /*Yet Anothr JSON*/,updated timestamp not null)";
 
 					$query3="CREATE TABLE ".$subscript."pollvotes(voteid integer primary key auto_increment,pollid integer references ".$subscript."polls(pollid) on update set null on delete cascade,userid integer references ".$subscript."users(id) on delete cascade on update set null,voteindex integer not null)";
 
-					// HASHING OF PASSWORD
+					// HASHING OF PASSWORD AND GENERATION OF SECURITY KEY
+
+					$securitykey=generator();       // Generated Security Key.
 
 					$adminvars['adminpass']=password_hash($adminvars['adminpass'],PASSWORD_BCRYPT);       // BCRYPT ALGORITHM
 
-					$query3="INSERT INTO ".$subscript."users(name,email,password,npolls,nvotes,photo) VALUES('".$adminvars['adminname']."','".$adminvars['adminemail']."','".$adminvars['adminpass']."',0,'files/default.jpeg')";
+					$query4="INSERT INTO ".$subscript."users(name,email,password,npolls,photo,securitykey) VALUES('".$adminvars['adminname']."','".$adminvars['adminemail']."','".$adminvars['adminpass']."',0,'files/default.jpeg','".password_hash($securitykey,PASSWORD_BCRYPT)."')";
 
 					if($db->query($query1)){
 						$successcounter++;
@@ -115,6 +122,14 @@
 
 					if($db->query($query3)){
 						$successcounter++;
+						echo "<br><Br>Created Votes Table.";
+					}
+					else{
+						echo "<br><br>Failed to create votes table.";
+					}
+
+					if($db->query($query4)){
+						$successcounter++;
 						echo "<br><Br>Inserted Admin Details.";
 					}
 					else{
@@ -123,7 +138,7 @@
 
 					// Checking if the installation was successful.
 
-					if($successcounter==3){
+					if($successcounter==4){
 						// NOW WRITING FILES
 
 						fclose($handle1);
@@ -166,6 +181,7 @@
 
 						if($writingsuccess==2)
 							echo "<br><br>Congratulations, Your Pollster App was installed.<br><br>
+								Kindly Note your User Security Key : <b>$securitykey</b>. This will help you reset your password.<br><br>
 								<a href='../index.php'><button class='submitbutton'>Check it out!</button></a>";
 						else{
 							echo "<br><br>Sorry, your app could not be installed, please try again.";

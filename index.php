@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Pollster</title>
+	<title><?php echo $appname; ?></title>
 	<?php include 'inc/styles.html'; ?>
 </head>
 <body>

@@ -31,12 +31,10 @@
 
 				$toremovearray=serialize($toremovearray);
 
-				$updater1=$db->query("UPDATE ".$subscript."polls SET totalvotes=totalvotes-1 WHERE pollid='$pollid'");
+				$updater1=$db->query("UPDATE ".$subscript."polls SET results='$toremovearray' WHERE pollid='$pollid'");
 
-				$updater2=$db->query("UPDATE ".$subscript."polls SET results='$toremovearray' WHERE pollid='$pollid'");
-
-				if($updater1 && $updater2){
-
+				if($updater1){
+					// DO NOTHING
 				}
 				else{
 					$resetter=$db->query("INSERT INTO ".$subscript."pollvotes(pollid,userid,voteindex) VALUES('$pollid','".$_SESSION['polluserid']."')");

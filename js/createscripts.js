@@ -35,22 +35,22 @@ function createpoll(){     // Function to organise and create the poll and send 
 
 		now=now.substring(4,15);
 
-		var create=new XMLHttpRequest();
+		// NOW AJAX :
 
-		console.log('finalizepoll.php?options='+optionarray.toString()+'&nooptions='+document.getElementsByClassName('pollinputoptions').length+'&polltitle='+polltitle+'&time='+encodeURIComponent(now)+'');
+		var create=new XMLHttpRequest();
 
 		create.open('GET','finalizepoll.php?options='+optionarray+'&nooptions='+document.getElementsByClassName('pollinputoptions').length+'&polltitle='+encodeURIComponent(polltitle)+'&time='+encodeURIComponent(now)+'');
 
 		create.onload=function(){
-			var path=(window.location.protocol.toString()+"://"+window.location.hostname.toString()+window.location.pathname.toString()).toString();
+			// var path=(window.location.protocol.toString()+"://"+window.location.hostname.toString()+window.location.pathname.toString()).toString();
 			
-			path=path.split("/").slice(0,-1).join("/");   // Got current path.
+			// path=path.split("/").slice(0,-1).join("/");   // Got current path.
 
 			if(create.responseText=='200'){
 				self.location=('index.php');
+				return true;
 			}
 			else{
-				console.log(create.responseText);
 				document.getElementById('errors').innerHTML="<br><br>An Unknown Error Occured. Please Try Again Later.";
 			}
 		}

@@ -1,7 +1,8 @@
 <?php
 
+error_reporting(0);
+
 include 'inc/connect.php';
-include 'inc/interconfig.php';
 
 $host = 'localhost';
 $username = 'userr';
@@ -15,4 +16,5 @@ $agreement = 'This is to agree to the conditions that none of the Web Applicatio
 $db = new dbdriver;
 
 $db -> connect($host,$username,$password,$dbname);
+include 'inc/interconfig.php';
 ?>

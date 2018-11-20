@@ -2,9 +2,7 @@
 	session_start();
 	include 'inc/checker.php';
 	include 'inc/config.php';
-	$_SESSION['polladmin']=true;
-	$_SESSION['polluserid']=1;
-	$_SESSION['polllog']=true;
+	
 ?>
 <!DOCTYPE html>
 <html>
@@ -59,11 +57,11 @@
 					</div>
 				<?php
 			}
-			else if($db->numrows($pollquery)>20){
+			else if($db->numrows($pollquery)>10){
 				// If pagination is required.
 				$numrows=$db->numrows($pollquery);
 
-				$rowsperpage = 20;
+				$rowsperpage = 10;         // 10 Entries per page.
 				
 				$totalpages = ceil($numrows / $rowsperpage);
 
@@ -108,7 +106,8 @@
 				} 
 
 				echo "<div style='clear:both;' align='center'><br><br><div class='pagination'>";
-				$range = 2;
+				
+				$range = 3;       // Three Page Bullets per page.
 
 				if ($currentpage > 1) {
 				   
@@ -145,7 +144,7 @@
 				   echo " <a href='{$_SERVER['PHP_SELF']}?currentpage=$totalpages'>>></a> ";
 				} 
 
-				echo "</div></div>";
+				echo "<br><div align=\"center\"><div class=\"bottomdash\"></div></div></div></div>";
 			}
 			else{                     // Spread all the polls out in a single page instead of pagination.
 				while($poll=$db->fetch($pollquery)){ 
@@ -163,6 +162,14 @@
 				}
 			}
 		?>
+		</div>
+		<br><div align="center">
+			<div class="bottomdash"></div>
+			<?php 
+				if($_SESSION['polllog']==true && $_SESSION['polluserid']){
+					echo "<br><br><a href='createpoll.php'><button class='removebutton'>Create A Poll</button></a>";
+				}
+			?>
 		</div>
 	</main>
 	<?php include 'footer.php'; ?>

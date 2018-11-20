@@ -145,9 +145,13 @@ button{
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
+/*
+
 #examplebox{
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px;
 }
+
+*/
 
 /* MAIN CONTENT */
 
@@ -155,7 +159,7 @@ button{
 	padding: 0px;
 	overflow: auto;        
 	margin: 0px;
-	min-height: 100vh;
+	min-height: 95vh;
 }
 
 /* POLL */
@@ -221,7 +225,7 @@ footer .header{
 	font-size: 20px;
 }
 
-/* PLACEHOLDER FOR DIVISIONS */
+/* PLACEHOLDER FOR DIVISIONS. */
 
 [contentEditable=true]{
 	outline: none;
@@ -318,6 +322,12 @@ footer .header{
 	word-wrap: break-word;
 }
 
+.bottomdash{
+	height: 0px;
+	border-bottom: 2.5px dashed #343434;
+	width: 2%;
+}
+
 /* HEADER */
 
 #header{
@@ -329,7 +339,8 @@ footer .header{
 }
 
 #header a{
-
+	text-decoration: none;
+	color: #212121;
 }
 
 #header .right{
@@ -350,5 +361,5 @@ footer .header{
 
 .logintext{
 	color: #6200ee;
-	font-weight: bold;
+	font-size: 14px;
 }

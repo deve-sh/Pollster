@@ -284,6 +284,7 @@ footer .header{
 	display: inline-block;
 	float: left;
 	margin-left: 2%;
+	margin-top: 2%;
 	padding: 20px;
 	overflow: auto;
 	border-radius: 3px;

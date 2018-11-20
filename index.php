@@ -49,7 +49,7 @@
 								}
 								else{
 									?>
-										<a href="register.php" class="removebutton">Register</a> &nbsp&nbsp<a href="login.php" class="logintext">Login</a>
+										<a href="register.php"><button class="removebutton">Register</button></a> &nbsp&nbsp<a href="login.php" class="logintext">Login</a>
 									<?php
 								}
 							?>
@@ -155,7 +155,6 @@
 						";
 						if($_SESSION['polladmin']==true || $_SESSION['polluserid']==$poll['userid'])
 							echo "<div class='left'><a href=\"removepoll.php?pollid=".$poll['pollid']."\"><span class='deletebutton'><i class=\"fas fa-trash\"></i></span></a></div>";
-
 						echo "<div class='right'>".$poll['date_created']."</div>
 						</div>
 					</div>";
@@ -166,8 +165,8 @@
 		<br><div align="center">
 			<div class="bottomdash"></div>
 			<?php 
-				if($_SESSION['polllog']==true && $_SESSION['polluserid']){
-					echo "<br><br><a href='createpoll.php'><button class='removebutton'>Create A Poll</button></a>";
+				if($_SESSION['polllog']==true && $_SESSION['polluserid'] && $db->numrows($pollquery)!=0){
+					echo "<br><br><a href='createpoll.php'><button class='removebutton'>Create A Poll</button></a><br><br>";
 				}
 			?>
 		</div>

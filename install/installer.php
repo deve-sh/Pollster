@@ -90,7 +90,7 @@
 
 					$megaarray=array_merge($dbvars,$appvars,$adminvars);
 					
-					$query1="CREATE TABLE ".$subscript."users(id integer primary key auto_increment,name text not null,email varchar(255) unique not null,password varchar(255) not null,npolls integer,photo varchar(255) not null,securitykey varchar(255) not null,isadmin boolean not null)";
+					$query1="CREATE TABLE ".$subscript."users(id integer primary key auto_increment,name text not null,email varchar(255) unique not null,password varchar(255) not null,npolls integer,photo varchar(255) not null,salt varchar(255),securitykey varchar(255) not null,isadmin boolean not null)";
 
 					$query2="CREATE TABLE ".$subscript."polls(pollid integer primary key auto_increment, userid integer references ".$subscript."users(id) on update set null on delete cascade, title text not null,nooptions integer not null,options text not null /*JSON*/,date_created text not null,results text not null /*Yet Anothr JSON*/,updated timestamp not null)";
 
@@ -99,10 +99,12 @@
 					// HASHING OF PASSWORD AND GENERATION OF SECURITY KEY
 
 					$securitykey=generator();       // Generated Security Key.
+					$salt=saltgen();
 
-					$adminvars['adminpass']=password_hash($adminvars['adminpass'],PASSWORD_BCRYPT);       // BCRYPT ALGORITHM
+					$adminvars['adminpass']=crypt($adminvars['adminpass'],$salt);       // DEFAULT ALGORITHM
+					$adminvars['adminpass']=md5($adminvars['adminpass']);               // EXTRA LAYER OF SECURITY
 
-					$query4="INSERT INTO ".$subscript."users(name,email,password,npolls,photo,securitykey,isadmin) VALUES('".$adminvars['adminname']."','".$adminvars['adminemail']."','".$adminvars['adminpass']."',0,'files/default.jpeg','".password_hash($securitykey,PASSWORD_BCRYPT)."',true)";
+					$query4="INSERT INTO ".$subscript."users(name,email,password,npolls,photo,salt,securitykey,isadmin) VALUES('".$adminvars['adminname']."','".$adminvars['adminemail']."','".$adminvars['adminpass']."',0,'files/default.jpeg','$salt','".crypt($securitykey,$salt)."',true)";
 
 					if($db->query($query1)){
 						$successcounter++;
@@ -181,7 +183,7 @@
 
 						if($writingsuccess==2)
 							echo "<br><br>Congratulations, Your Pollster App was installed.<br><br>
-								Kindly Note your User Security Key : <b>$securitykey</b>. This will help you reset your password.<br><br>
+								Kindly Note your User Security Key : <b>$securitykey</b>. <br>This will help you reset your password.<br><br>
 								<a href='../index.php'><button class='submitbutton'>Check it out!</button></a>";
 						else{
 							echo "<br><br>Sorry, your app could not be installed, please try again.";

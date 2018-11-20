@@ -37,7 +37,7 @@
 
 						$user=$db->fetch($db->query("SELECT * FROM ".$subscript."users WHERE email='".$email."'"));
 
-						if(strcmp($password,password_hash($password,PASSWORD_BCRYPT))==1) // If password hashes have the same meaning.
+						if($db->numrows($db->query("SELECT * FROM ".$subscript."users WHERE email='$email' AND password='".md5(crypt($password,$user['salt']))."'"))==1) // If password hashes have the same value.
 						{
 							$_SESSION['polllog']=true;
 							$_SESSION['polluserid']=$user['id'];
@@ -53,7 +53,7 @@
 						}
 					}
 					else{
-						echo "<br><br><span style='color: #ffffff;'>Wrong Credentials.</span>";
+						echo "<br><br><span style='color: #ffffff;'>No user with such email exists.</span>";
 					}
 				}
 			}

@@ -17,6 +17,7 @@
 
 .pollbody{
 	width: 100%;
+	margin-left: 0px;
 }
 
 .polldetails .left{
@@ -32,9 +33,9 @@
 /* HEADER */
 
 #header .left{
-	width: 30%;
+	width: 45%;
 }
 
 #header .right{
-	width: 70%;
+	width: 55%;
 }

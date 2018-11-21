@@ -10,7 +10,7 @@ include 'inc/config.php';
 	<?php include 'inc/styles.html'; ?>
 </head>
 <body class="mainbody">
-	<main>
+	<main style="border-top: 5px solid #009688;">
 		<!-- HEADER -->
 		<div id='header'>
 			<div class="left"><span class="back"><?php if($_SERVER['HTTP_REFERER']){?><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>" title='Previous Page'><i class="fas fa-arrow-left"></i></a><?php } ?></span>&nbsp&nbsp <a href='index.php' title='<?php echo $appname." - Home"; ?>'><?php echo $appname; ?></a></div>

@@ -132,8 +132,7 @@
 				         echo "<a href='{$_SERVER['PHP_SELF']}?currentpage=$x'>$x</a> ";
 				      } 
 				   } 
-				} 
-				                 
+				}
 				
 				if ($currentpage != $totalpages) {
 				   

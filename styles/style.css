@@ -364,3 +364,42 @@ footer .header{
 	color: #6200ee;
 	font-size: 14px;
 }
+
+/* User CP */
+
+.profilephoto{
+	border-radius: 50%;
+	max-height: 200px;
+	max-width: 200px;
+}
+
+.useroptions{
+	width: 50%;
+	padding: 15px;
+	color: #212121;
+	text-decoration: none;
+	box-shadow: 6px;
+	box-shadow: 0 1px 3px 0 rgba(0,0,0,.3), 0 0 0 1px rgba(0,0,0,.04);
+}
+
+.userpoll{
+	width: 100%;
+	text-align: left;
+	padding: 15px;
+	padding-left: 20px;
+}
+
+.userpoll .title{
+	font-size: 20px;
+}
+
+.userpoll .time{
+	font-size: 13px;
+	color: gray;
+}
+
+.userpoll .userremovebutton{
+	padding: 5px;
+	background: transparent;
+	border: 1px solid #cfcfcf;
+}

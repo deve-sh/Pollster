@@ -30,7 +30,7 @@ include 'inc/config.php';
 								<?php
 								  }
 								?>
-								&nbsp&nbsp&nbsp 
+								&nbsp&nbsp&nbsp
 								<a href="logout.php" title='Logout'><button class="removebutton">Logout</button></a>&nbsp
 						<?php
 					}
@@ -71,26 +71,124 @@ include 'inc/config.php';
 						<a href='changepassword.php'><div class="useroptions">
 							Change Password
 						</div></a>
-					</div>
-<h3 style="margin-left: 20px;">
+					</div><br>
+<h3 style="margin-left: 20px; border-bottom: 1px solid #212121; border-top: 1px solid #212121; display: inline-block;">
 	Polls Created : 
 </h3>
 					<div align="center">
 						<?php
 							// Displaying of all the polls of the user.
-							if($user['npolls']==0){
+							if($user['npolls']<=0){
 								echo "No Polls Yet.";
 							}
-							else{
+							else if($user['npolls']<=5){
 								$pollquery=$db->query("SELECT * FROM ".$subscript."polls WHERE userid='".$_SESSION['polluserid']."'");
 
-								if($user['npolls']<=10){
-									while($poll=$db->fetch($pollquery)){
-										echo "<div class='userpoll'>
+								echo "<div id='userpollwrapper'>";
+
+								while($poll=$db->fetch($pollquery)){
+									echo "<div class='userpoll'>
+									<div class='left'>
 										<span class='title'>".$poll['title']."
-										</span>&nbsp&nbsp<span class='time'>".$poll['date_created']."</span><br><a href='removepoll.php?pollid=".$poll['pollid']."'><button class='userremovebutton'>Remove</button></a>";
-									}
+										</span>&nbsp&nbsp<span class='time'>".$poll['date_created']."</span>
+									</div>
+									<div class='right' align='center'>
+										<a href='removepoll.php?pollid=".$poll['pollid']."'><button class='userremovebutton'>Remove</button></a>
+										</div>
+									</div><br>";
 								}
+
+								echo "</div>";
+							}
+							else{       // If the polls do need to be laid out accross multiple pages.
+								$pollquery=$db->query("SELECT * FROM ".$subscript."polls WHERE userid='".$_SESSION['polluserid']."'");
+
+								// PAGINATION
+
+								$numrows=$db->numrows($pollquery);
+
+								$rowsperpage = 5;         // 10 Entries per page.
+								
+								$totalpages = ceil($numrows / $rowsperpage);
+
+								if (isset($_GET['currentpage']) && is_numeric($_GET['currentpage'])) {
+								   
+								   $currentpage = (int) $_GET['currentpage'];
+								} else {
+								   
+								   $currentpage = 1;
+								} 
+
+								
+								if ($currentpage > $totalpages) {
+								   
+								   $currentpage = $totalpages;
+								} 
+								
+								if ($currentpage < 1) {
+								   
+								   $currentpage = 1;
+								} 
+
+								
+								$offset = ($currentpage - 1) * $rowsperpage;
+
+								
+								$sql = "SELECT * FROM ".$subscript."polls WHERE userid='".$_SERVER['polluserid']."' LIMIT $offset, $rowsperpage";
+								$result = $db->query($sql);
+
+								echo "<div id='userpollwrapper'>";
+
+								while($poll=$db->fetch($pollquery)){
+									echo "<div class='userpoll'>
+									<div class='left'>
+									<span class='title'>".$poll['title']."
+									</span>&nbsp&nbsp<span class='time'>".$poll['date_created']."</span></div>
+									<div class='right' align='center'>
+									<a href='removepoll.php?pollid=".$poll['pollid']."'><button class='userremovebutton'>Remove</button></a>
+									</div>
+									</div><br>";
+								} 
+
+								echo "<div style='clear:both;' align='center'><br><br><div class='pagination'>";
+								
+								$range = 3;       // Three Page Bullets per page.
+
+								if ($currentpage > 1) {
+								   
+								   echo "<a href='{$_SERVER['PHP_SELF']}?currentpage=1'><<</a> ";
+								   
+								   $prevpage = $currentpage - 1;
+								   
+								   echo "<a href='{$_SERVER['PHP_SELF']}?currentpage=$prevpage'><</a> ";
+								} 
+
+									
+								for ($x = ($currentpage - $range); $x < (($currentpage + $range) + 1); $x++) {
+								
+								   if (($x > 0) && ($x <= $totalpages)) {
+								
+								      if ($x == $currentpage) {
+									
+								         echo "<a class='active'>$x</a>";
+								      
+								      } else {
+								         
+								         echo "<a href='{$_SERVER['PHP_SELF']}?currentpage=$x'>$x</a> ";
+								      } 
+								   } 
+								}
+								
+								if ($currentpage != $totalpages) {
+								   
+								   $nextpage = $currentpage + 1;
+								    
+								   echo " <a href='{$_SERVER['PHP_SELF']}?currentpage=$nextpage'>></a> ";
+								   
+								   echo " <a href='{$_SERVER['PHP_SELF']}?currentpage=$totalpages'>>></a> ";
+								} 
+
+								echo "</div></div>";
 							}
 						?>
 					</div>

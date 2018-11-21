@@ -125,6 +125,7 @@ button{
 
 .backbutton:hover{
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	transform: translateY(-2px);
 }
 
 .removebutton{
@@ -143,6 +144,7 @@ button{
 
 .removebutton:hover{
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	transform: translateY(-2px);
 }
 
 /*
@@ -358,6 +360,24 @@ footer .header{
 	margin: 0px;
 }
 
+/* Pagination */
+
+.pagination a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.pagination a.active {
+    background-color: dodgerblue;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}
+
 /* MISC TEXT */
 
 .logintext{
@@ -385,8 +405,20 @@ footer .header{
 .userpoll{
 	width: 100%;
 	text-align: left;
+}
+
+.userpoll .left{
+	width: 70%;
 	padding: 15px;
 	padding-left: 20px;
+	float: left;
+}
+
+.userpoll .right{
+	width: 25%;
+	padding: 15px;
+	float: right;
+	text-align: center;
 }
 
 .userpoll .title{
@@ -399,7 +431,8 @@ footer .header{
 }
 
 .userpoll .userremovebutton{
-	padding: 5px;
+	padding: 10px;
 	background: transparent;
 	border: 1px solid #cfcfcf;
+	border-radius: 2px;
 }

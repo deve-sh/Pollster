@@ -9,23 +9,6 @@
 <head>
 	<title><?php echo $appname; ?></title>
 	<?php include 'inc/styles.html'; ?>
-	<style type="text/css">
-		.pagination a {
-		    color: black;
-		    padding: 8px 16px;
-		    text-decoration: none;
-		    transition: background-color .3s;
-		}
-		
-		.pagination a.active {
-		    background-color: dodgerblue;
-		    color: white;
-		}
-
-		.pagination a:hover:not(.active) {
-			background-color: #ddd;
-		}
-	</style>
 </head>
 <body class="mainbody">
 	<main style="border-top : 5px solid #007fd0;">

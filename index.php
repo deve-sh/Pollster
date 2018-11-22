@@ -76,15 +76,15 @@
 
 				while ($poll = $db->fetch($result)) {
 				   echo "<div class='pollbody'>
-						<a href='viewpoll.php?pollid=".$poll['pollid']."&userid=".$_SESSION['polluserid']."'>
-						<div class='polltitle'>".$poll['title']."</div></a>
-						<div class='polldetails'>
-						";
-						if($_SESSION['polladmin']==true || $_SESSION['polluserid']==$poll['userid'])
-							echo "<div class='left'><a href=\"removepoll.php?pollid=".$poll['pollid']."\"><span class='deletebutton'><i class=\"fas fa-trash\"></i></span></a></div>";
+							<a href='viewpoll.php?pollid=".$poll['pollid']."&userid=".$_SESSION['polluserid']."'>
+							<div class='polltitle'>".$poll['title']."</div></a>
+							<div class='polldetails'>
+							";
+							if($_SESSION['polladmin']==true || $_SESSION['polluserid']==$poll['userid'])
+								echo "<div class='left'><a href=\"removepoll.php?pollid=".$poll['pollid']."\"><span class='deletebutton'><i class=\"fas fa-trash\"></i></span></a></div>";
 
-						echo "<div class='right'>".$poll['date_created']."</div>
-						</div>
+							echo "<div class='right'>".$poll['date_created']."</div>
+							</div>
 					</div>";
 				} 
 

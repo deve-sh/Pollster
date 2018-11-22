@@ -72,7 +72,7 @@ include 'inc/config.php';
 							Change Password
 						</div></a>
 					</div><br>
-<h3 style="margin-left: 20px; border-bottom: 1px solid #212121; border-top: 1px solid #212121; display: inline-block;">
+<h3 class="pollscreated">
 	Polls Created : 
 </h3>
 					<div align="center">

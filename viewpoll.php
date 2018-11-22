@@ -8,7 +8,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title><?php echo $appname; ?></title>
+	<title>
+		<?php echo $appname; ?>
+	</title>
 	<?php include 'inc/styles.html'; ?>
 </head>
 <body class="mainbody">

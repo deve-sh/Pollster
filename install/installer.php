@@ -169,6 +169,29 @@
 
 						$configstring.="\ninclude 'inc/interconfig.php';\n?>";  // End of String
 
+						// ADMIN CP CONFIGURATIONS
+
+						$adminconfigstring="<?php\n\nerror_reporting(0);\n\n";  // String to be written to the configuration file.
+
+						$adminconfigstring.="include '../inc/connect.php';\n\n";
+
+						foreach($dbvars as $key => $value) {
+							$adminconfigstring.="\$".(string)$key." = '".$value."';\n";
+						}
+
+						$adminconfigstring.="\n";
+
+						// Other settings :
+
+						foreach($appvars as $key => $value){
+							$adminconfigstring.="\$".(string)$key." = '".$value."';\n";
+						}
+						
+						$adminconfigstring.="\$db = new dbdriver;\n\n";           // DB Driver Object Instance.
+						$adminconfigstring.="\$db -> connect(\$host,\$username,\$password,\$dbname);";
+
+						$adminconfigstring.="\ninclude '../inc/interconfig.php';\n?>";  // End of String
+
 						$writingsuccess=0;
 
 						$handle1=fopen($filename1,"w+");
@@ -181,7 +204,12 @@
 							$writingsuccess++;
 						fclose($handle2);
 
-						if($writingsuccess==2)
+						$handle3=fopen($filename3,"w+");
+						if(fwrite($handle3,$adminconfigstring))
+							$writingsuccess++;
+						fclose($handle3);
+
+						if($writingsuccess==3)
 							echo "<br><br>Congratulations, Your Pollster App was installed.<br><br>
 								Kindly Note your User Security Key : <b>$securitykey</b>. <br>This will help you reset your password.<br><br>
 								<a href='../index.php'><button class='submitbutton'>Check it out!</button></a>";

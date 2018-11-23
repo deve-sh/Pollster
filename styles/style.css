@@ -445,4 +445,16 @@ footer .header{
 	background: transparent;
 	border: 1px solid #cfcfcf;
 	border-radius: 2px;
+	cursor: pointer;
+}
+
+/* Admin CP */
+
+.adminbody main{
+	padding: 0px;
+	min-height: 85vh;
+}
+
+.adminbody .mainbody{
+	padding: 20px;
 }

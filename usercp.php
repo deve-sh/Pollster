@@ -72,9 +72,9 @@ include 'inc/config.php';
 							Change Password
 						</div></a>
 					</div><br>
-<h3 class="pollscreated">
-	Polls Created : 
-</h3>
+				<h3 class="pollscreated">
+					Polls Created : 
+				</h3>
 					<div align="center">
 						<?php
 							// Displaying of all the polls of the user.

@@ -458,3 +458,57 @@ footer .header{
 .adminbody .mainbody{
 	padding: 20px;
 }
+
+/* Admin CP */
+
+.adminpoll{
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+	margin-top: 5px;
+	background: linear-gradient(90deg,#24a1d1 70%,#f1f1f1 30%);
+	overflow: hidden;
+	height: auto;
+}
+
+.adminpoll a{
+	color: #212121;
+}
+
+.adminpoll .left{
+	background: #24a1d1;
+	float: left;
+	width: 70%;
+	color: #ffffff;
+	font-size: 20px;
+	padding: 20px;
+}
+
+.adminpoll .right{
+	background: #f1f1f1;
+	float: right;
+	width: 30%;
+	height: 100%;
+	padding: 15px;
+}
+
+.adminpoll .right .removebutton{
+	display: inline-block;
+}
+
+.adminpoll .right .remover{
+	background: #1971c2;
+	padding: 10px;
+}
+
+.adminpoll .left img{
+	max-width: 50px;
+	max-height: 50px;
+	vertical-align: middle;
+}
+
+.adminpoll .left .desc{
+	color: #efefef;
+	font-size: 13px;
+	vertical-align: middle;
+}

@@ -104,7 +104,7 @@
 					$adminvars['adminpass']=crypt($adminvars['adminpass'],$salt);       // DEFAULT ALGORITHM
 					$adminvars['adminpass']=md5($adminvars['adminpass']);               // EXTRA LAYER OF SECURITY
 
-					$query4="INSERT INTO ".$subscript."users(name,email,password,npolls,photo,salt,securitykey,isadmin) VALUES('".$adminvars['adminname']."','".$adminvars['adminemail']."','".$adminvars['adminpass']."',0,'files/default.jpeg','$salt','".crypt($securitykey,$salt)."',true)";
+					$query4="INSERT INTO ".$subscript."users(name,email,password,npolls,photo,salt,securitykey,isadmin) VALUES('".$adminvars['adminname']."','".$adminvars['adminemail']."','".$adminvars['adminpass']."',0,'files/default.png','$salt','".crypt($securitykey,$salt)."',true)";
 
 					if($db->query($query1)){
 						$successcounter++;

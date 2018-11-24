@@ -72,9 +72,22 @@ include 'adminconfig.php';
 										<img src="<?php echo "../".$user['photo']; ?>" alt="<?php echo "User ID : ".$user['id']; ?>" class='userphoto'> &nbsp&nbsp <?php echo $user['name']."&nbsp&nbsp<span class='desc'>".$user['email']."</span>"; ?>
 									</div>
 									<div class="right" align="center">
-										<a href='deleteuser.php?userid=<?php echo $user['id']; ?>'><span class="remover removebutton"><i class="fas fa-trash-alt"></i></span></a>
+										<?php
+										 if($user['isadmin']!=1){
+										 	?>
+										 <a href='deleteuser.php?userid=<?php echo $user['id']; ?>'><span class="remover removebutton"><i class="fas fa-trash-alt"></i></span></a>
+										 <?php
+										 }
+										?>
 										&nbsp
-										<a href="makeadmin.php?userid=<?php echo $user['id']; ?>" title="Make Admin"><span class="removebutton"><i class="fas fa-user-shield"></i></span></a>
+										<?php
+										if($user['isadmin']==false)
+										{
+											?>
+											<a href="makeadmin.php?userid=<?php echo $user['id']; ?>" title="Make Admin"><span class="removebutton"><i class="fas fa-user-shield"></i></span></a>
+											<?php
+										}
+										?>
 									</div>
 								</div>
 								<?php

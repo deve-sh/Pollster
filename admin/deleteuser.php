@@ -20,8 +20,8 @@ include 'adminconfig.php';
 				header("refresh:0;url=allusers.php");
 				exit();
 			}
-			
-			if($userid%1==0 && $userid!=1){   // If userid is infact a number and the user is not the first user.
+
+			if((int)$userid%1==0 && $userid!=1){   // If userid is infact a number and the user is not the first user.
 				// EXECUTION
 
 				if($db->numrows($db->query("SELECT * FROM ".$subscript."users WHERE id='$userid'"))>0){

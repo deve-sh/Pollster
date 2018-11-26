@@ -6,7 +6,7 @@ include 'adminconfig.php';
 <!DOCTYPE html>
 <html>
 <head>
-	<title><?php echo $appname." - "; ?>Make Admin</title>
+	<title><?php echo $appname." - "; ?>Revoke Admin Privileges</title>
 	<?php include 'adminstyles.html'; ?>
 </head>
 <body>
@@ -18,14 +18,18 @@ include 'adminconfig.php';
 
 					if($db->numrows($userquery)>0){
 						$user=$db->fetch($userquery);
-						if($user['isadmin']==true){
-							echo "<br><br>The user is already an administrator.";
+						if($user['isadmin']==false){
+							echo "<br><br>The user is not an administrator.";
 							header("refresh:1.5;url=allusers.php");
 							exit();
 						}
-						else{
-							if($db->query("UPDATE ".$subscript."users SET isadmin=1 where id='$userid'")){
-								echo "<br><br>User Made Admin.";
+						else if($user['id']==1){           // You can't revoke the privileges of someone who actually started the project.
+							header("refresh:0;url=allusers.php");  
+							exit();
+						}
+						else if($user['isadmin']==true){   // Final Condition.
+							if($db->query("UPDATE ".$subscript."users SET isadmin=0 where id='$userid'")){
+								echo "<br><br>User Revoked as Admin.";
 								header("refresh:2;url=allusers.php");
 								exit();
 							}

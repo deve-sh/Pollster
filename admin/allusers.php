@@ -73,7 +73,7 @@ include 'adminconfig.php';
 									</div>
 									<div class="right" align="center">
 										<?php
-										 if($user['isadmin']!=1){
+										 if($user['isadmin']!=1 && $user['id']!=1){
 										 	?>
 										 <a href='deleteuser.php?userid=<?php echo $user['id']; ?>'><span class="remover removebutton"><i class="fas fa-trash-alt"></i></span></a>
 										 <?php

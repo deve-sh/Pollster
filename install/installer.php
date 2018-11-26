@@ -33,7 +33,7 @@
 
 			$dbvars=array("host" => $_POST['host'],"username" => $_POST['username'],"password" => $_POST['password'],"dbname" => $_POST['dbname'],"subscript"=>$subscript);
 
-			$appvars=array("appname" => $_POST['appname'],"appemail" => $_POST['appemail'],"agreement" => $_POST['agreement']);
+			$appvars=array("appname" => $_POST['appname'],"appemail" => $_POST['appemail']);
 
 			$adminvars=array("adminname"=>$_POST['adminname'],"adminpass"=>$_POST['adminpass'],"adminemail"=>$_POST['adminemail']);
 
@@ -84,7 +84,7 @@
 						$adminvars[$key]=$db->escape($adminvars[$key]);
 					}
 
-					$appvars['agreement']=$db->escape($appvars['agreement']);
+					$agreement = $_POST['agreement'];  // User Agreement
 
 					$successcounter=0;
 
@@ -194,6 +194,8 @@
 
 						$writingsuccess=0;
 
+						$filename4="../inc/interconfig.php";
+
 						$handle1=fopen($filename1,"w+");
 						if(fwrite($handle1,"1"))
 							$writingsuccess++;
@@ -209,7 +211,18 @@
 							$writingsuccess++;
 						fclose($handle3);
 
-						if($writingsuccess==3)
+						$interconfigstring="<?php\n";
+						$interconfigstring.="\$maxops = 5;\n\$footermessage = \"<div class = 'header'>Footer</div>\";\n";
+						$interconfigstring.="\$agreement = \"".$agreement."\";\n";
+						$interconfigstring.="?>";
+
+						$handle4=fopen($filename4, "w+");
+
+						if(fwrite($handle4,$interconfigstring))
+							$writingsuccess++;
+						fclose($handle4);
+
+						if($writingsuccess==4)
 							echo "<br><br>Congratulations, Your Pollster App was installed.<br><br>
 								Kindly Note your User Security Key : <b>$securitykey</b>. <br>This will help you reset your password.<br><br>
 								<a href='../index.php'><button class='submitbutton'>Check it out!</button></a>";

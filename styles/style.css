@@ -24,6 +24,7 @@ a:visited{
 }
 
 /* Installation File Styles
+
    The Installation Files have body with class 'installset'. */
 
 .installset header{
@@ -52,11 +53,13 @@ a:visited{
 	display: inline-block;
 }
 
-#installform input,textarea{
+/* Inputs */
+
+input,textarea{
 	transition: 0.1s;
 }
 
-#installform input{
+input{
 	padding: 10px;
 	font-size: 15px;
 	border: 1px solid #cfcfcf;
@@ -65,15 +68,15 @@ a:visited{
 	outline: none;
 }
 
-#installform textarea:focus{
+textarea:focus{
 	border-left: 3px solid #506578;
 }
 
-#installform input:focus{
+input:focus{
 	border-left: 3px solid #506578;	
 }
 
-#installform textarea{
+textarea{
 	outline: none;
 	font-family: sans-serif;
 	width: 100%;
@@ -497,7 +500,7 @@ footer .header{
 }
 
 .adminpoll .right .remover{
-	background: #ff0000;
+	background: #1971c2;
 	padding: 10px;
 }
 

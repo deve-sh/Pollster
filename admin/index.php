@@ -27,7 +27,7 @@ include 'adminconfig.php';
 				
 				//-------------- HEADER---------------
 		?>
-				<div id='header'>
+				<div id='header' style="border-top: 5px solid rgb(0,128,128);">
 				<div class="left"><span class="back"><?php if($_SERVER['HTTP_REFERER']){?><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>" title='Previous Page'><i class="fas fa-arrow-left"></i></a><?php } ?></span>&nbsp&nbsp <a href='../index.php' title='<?php echo $appname." - Home"; ?>'><?php echo $appname; ?></a></div>
 				<div class="right" align="right">
 					<?php

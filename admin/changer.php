@@ -30,6 +30,7 @@ include 'adminconfig.php';
 		$interconfigstring.="?>";
 
 		if(fwrite($handle, $interconfigstring)){
+			fclose($handle);    // Closing the currently open file.
 			echo "<br><br>File successfully written and updated.";
 			header("refresh:1;url=forumsettings.php");
 			exit();

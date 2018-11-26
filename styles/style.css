@@ -1,4 +1,4 @@
-*{
+												*{
 	box-sizing: border-box;
 	transition: 0.2s;
 }
@@ -213,9 +213,6 @@ button{
 	padding: 10px;
 	text-align: center;
 }
-
-/* HEADER */
-
 
 /* FOOTER */
 
@@ -462,8 +459,6 @@ footer .header{
 	padding: 20px;
 }
 
-/* Admin CP */
-
 .adminpoll{
 	width: 100%;
 	padding: 0px;
@@ -515,3 +510,13 @@ footer .header{
 	font-size: 13px;
 	vertical-align: middle;
 }
+
+/* TEMPLATE EDITOR */
+
+.styletextarea{
+	height : 75vh;
+}
+
+.styletextarea:focus{
+    border-left: 1px solid #cfcfcf;
+}															

@@ -69,22 +69,27 @@ include 'adminconfig.php';
 								?>
 								<div class="adminpoll">
 									<div class="left">
-										<img src="<?php echo "../".$user['photo']; ?>" alt="<?php echo "User ID : ".$user['id']; ?>" class='userphoto'> &nbsp&nbsp <?php echo $user['name']."&nbsp&nbsp<span class='desc'>".$user['email']."</span>"; ?>
+										<img src="<?php echo "../".$user['photo']; ?>" alt="<?php echo "User : ".$user['name']; ?>" class='userphoto'> &nbsp&nbsp <?php echo $user['name']."&nbsp&nbsp<span class='desc'>".$user['email']."</span>"; ?>
 									</div>
 									<div class="right" align="center">
 										<?php
 										 if($user['isadmin']!=1 && $user['id']!=1){
-										 	?>
-										 <a href='deleteuser.php?userid=<?php echo $user['id']; ?>'><span class="remover removebutton"><i class="fas fa-trash-alt"></i></span></a>
+										 ?>
+										 	<a href='deleteuser.php?userid=<?php echo $user['id']; ?>'><span class="remover removebutton"><i class="fas fa-trash-alt"></i></span></a>
 										 <?php
 										 }
-										?>
+										 ?>
 										&nbsp
 										<?php
 										if($user['isadmin']==false)
 										{
 											?>
 											<a href="makeadmin.php?userid=<?php echo $user['id']; ?>" title="Make Admin"><span class="removebutton"><i class="fas fa-user-shield"></i></span></a>
+											<?php
+										}
+										else if($user['id']!=1 && $user['isadmin']==true){     // Remove Admin Privileges Button
+											?>
+											<a href="removeadmin.php?userid=<?php echo $user['id']; ?>" title="Revoke Admin Privileges"><span class="removebutton"><i class="fas fa-user-shield"></i></span></a>
 											<?php
 										}
 										?>
@@ -94,7 +99,108 @@ include 'adminconfig.php';
 							}
 						}
 						else{
+							    $numrows=$db->numrows($pollquery);
 
+								$rowsperpage = 10;         // 10 Entries per page.
+								
+								$totalpages = ceil($numrows / $rowsperpage);
+
+								if (isset($_GET['currentpage']) && is_numeric($_GET['currentpage'])) {
+								   
+								   $currentpage = (int) $_GET['currentpage'];
+								} else {
+								   
+								   $currentpage = 1;
+								} 
+
+								
+								if ($currentpage > $totalpages) {
+								   
+								   $currentpage = $totalpages;
+								} 
+								
+								if ($currentpage < 1) {
+								   
+								   $currentpage = 1;
+								} 
+
+								
+								$offset = ($currentpage - 1) * $rowsperpage;
+
+								
+								$sql = "SELECT * FROM ".$subscript."users LIMIT $offset, $rowsperpage";
+								$result = $db->query($sql);
+
+								while ($user = $db->fetch($result)) {
+								?>
+									<div class="adminpoll">
+										<div class="left">
+											<img src="<?php echo "../".$user['photo']; ?>" alt="<?php echo "User : ".$user['name']; ?>" class='userphoto'> &nbsp&nbsp <?php echo $user['name']."&nbsp&nbsp<span class='desc'>".$user['email']."</span>"; ?>
+										</div>
+										<div class="right" align="center">
+											<?php
+											 if($user['isadmin']!=1 && $user['id']!=1){
+											 	?>
+											 <a href='deleteuser.php?userid=<?php echo $user['id']; ?>'><span class="remover removebutton"><i class="fas fa-trash-alt"></i></span></a>
+											 <?php
+											 }
+											?>
+											&nbsp
+											<?php
+											if($user['isadmin']==false)
+											{
+												?>
+												<a href="makeadmin.php?userid=<?php echo $user['id']; ?>" title="Make Admin"><span class="removebutton"><i class="fas fa-user-shield"></i></span></a>
+												<?php
+											}
+											else if($user['id']!=1 && $user['isadmin']==true){     // Remove Admin Privileges Button
+											?>
+											<a href="removeadmin.php?userid=<?php echo $user['id']; ?>" title="Revoke Admin Privileges"><span class="removebutton"><i class="fas fa-user-shield"></i></span></a>
+											<?php
+										}
+											?>
+										</div>
+									</div>
+								<?php
+								} 
+
+								echo "<div style='clear:both;' align='center'><br><br><div class='pagination'>";
+								
+								$range = 3;       // Three Page Bullets per page.
+
+								if ($currentpage > 1) {
+								   
+								   echo "<a href='{$_SERVER['PHP_SELF']}?currentpage=1'><<</a> ";
+								   
+								   $prevpage = $currentpage - 1;
+								   
+								   echo "<a href='{$_SERVER['PHP_SELF']}?currentpage=$prevpage'><</a> ";
+								} 
+
+									
+								for ($x = ($currentpage - $range); $x < (($currentpage + $range) + 1); $x++) {
+								
+								   if (($x > 0) && ($x <= $totalpages)) {
+								
+								      if ($x == $currentpage) {
+									
+								         echo "<a class='active'>$x</a>";
+								      
+								      } else {
+								         
+								         echo "<a href='{$_SERVER['PHP_SELF']}?currentpage=$x'>$x</a> ";
+								      } 
+								   } 
+								}
+								
+								if ($currentpage != $totalpages) {
+								   
+								   $nextpage = $currentpage + 1;
+								    
+								   echo " <a href='{$_SERVER['PHP_SELF']}?currentpage=$nextpage'>></a> ";
+								   
+								   echo " <a href='{$_SERVER['PHP_SELF']}?currentpage=$totalpages'>>></a> ";
+								}
 						}
 				}
 				?>

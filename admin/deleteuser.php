@@ -31,10 +31,37 @@ include 'adminconfig.php';
 				    $user=$db->fetch($db->query("SELECT * FROM ".$subscript."users WHERE id='$userid'"));
 
 				    if($user['isadmin']!=true){
-				    	if($db->query("DELETE FROM ".$subscript."pollvotes WHERE userid='$userid'") && $db->query("DELETE FROM ".$subscript."polls WHERE userid='$userid'") && $db->query("DELETE FROM ".$subscript."users WHERE id='$userid'")){
+				    	if($db->query("DELETE FROM ".$subscript."polls WHERE userid='$userid'") && $db->query("DELETE FROM ".$subscript."users WHERE id='$userid'")){
 
 				    		if(strcmp($user['photo'],"files/default.png")!=0){
 				    			unlink("../".$user['photo']);   // Delete Profile Photo
+				    		}
+
+				    		// Removing the vote index from each poll the user has voted.
+
+				    		$deletionpoll=$db->query("SELECT * FROM ".$subscript."pollvotes WHERE userid='".$user['id']."'");
+
+				    		if($db->numrows($deletionpoll)>0){
+				    			
+				    			while($userspoll = $db->fetch($deletionpoll)){
+				    				$todelete = $db->fetch($db->query("SELECT * FROM ".$subscript."polls WHERE pollid='".$userspoll['pollid']."'"));
+
+				    				$results = unserialize($todelete['results']);  // Creating an array from the stringed results.
+
+				    				foreach ($results as $key => $value) {
+				    					if((int)$key==(int)$todelete['voteindex'] && $results[$key]>0){
+				    						$results[$key]-=1;   // Reduced One Vote.
+				    					}
+				    				}
+
+				    				$results = serialize($results);  // Converted the results back to string.
+
+				    				$db->query("UPDATE ".$subscript."polls SET results='".$results."' WHERE pollid='".$todelete['pollid']."'");
+
+				    				$db->query("DELETE FROM ".$subscript."pollvotes WHERE userid='".$user['id']."'");
+
+				    			}
+
 				    		}
 
 							echo "<br><br>User Successfully Deleted.";

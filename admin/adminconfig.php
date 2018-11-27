@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(0);
+
 include '../inc/connect.php';
 
 $host = 'localhost';

@@ -68,6 +68,14 @@ input{
 	outline: none;
 }
 
+input[type=file] button{
+	background: #506578;
+	padding: 10px;
+	border:none;
+	border-radius: 2px;
+	color: #ffffff;
+}
+
 textarea:focus{
 	border-left: 3px solid #506578;
 }
@@ -520,3 +528,15 @@ footer .header{
 .styletextarea:focus{
     border-left: 1px solid #cfcfcf;
 }															
+
+/* Register */
+
+.register{
+	background: #ffffff;
+	text-align: center;
+	padding: 20px;
+	display: inline-block;
+	color: #212121;
+	box-shadow: 0 1px 3px 0 rgba(0,0,0,.3), 0 0 0 1px rgba(0,0,0,.04);
+	border-radius: 5px;
+}

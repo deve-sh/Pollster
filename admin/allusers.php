@@ -89,7 +89,7 @@ include 'adminconfig.php';
 										}
 										else if($user['id']!=1 && $user['isadmin']==true){     // Remove Admin Privileges Button
 											?>
-											<a href="removeadmin.php?userid=<?php echo $user['id']; ?>" title="Revoke Admin Privileges"><span class="removebutton"><i class="fas fa-user-shield"></i></span></a>
+											<a href="removeadmin.php?userid=<?php echo $user['id']; ?>" title="Revoke Admin Privileges"><span class="removebutton"><i class="fas fa-user-times"></i></span></a>
 											<?php
 										}
 										?>

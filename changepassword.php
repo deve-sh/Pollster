@@ -27,8 +27,8 @@
 				<?
 
 				if($_POST['oldpass'] && $_POST['newpass']){
-					$newpass=$_POST['newpass'];
-					$oldpass=$_POST['oldpass'];
+					$newpass=$db->escape($_POST['newpass']);
+					$oldpass=$db->escape($_POST['oldpass']);
 
 					$userquery=$db->query("SELECT * FROM ".$subscript."users WHERE id='".$_SESSION['polluserid']."'");
 

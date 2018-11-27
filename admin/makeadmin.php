@@ -12,9 +12,12 @@ include 'adminconfig.php';
 <body>
 	<?php
 		if($_SESSION['polluserid'] && $_SESSION['polllog']==true && $_SESSION['polladmin']==true){
+
 			if(isset($_GET['userid'])){
-				$if((int)$userid%1==0){
-					$userquery=$db->fetch("SELECT * FROM ".$subscript."users WHERE id='$userid'");
+				$userid = $_GET['userid'];
+				
+				if((int)$userid%1==0){
+					$userquery=$db->query("SELECT * FROM ".$subscript."users WHERE id='$userid'");
 
 					if($db->numrows($userquery)>0){
 						$user=$db->fetch($userquery);

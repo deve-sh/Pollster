@@ -32,6 +32,11 @@ include 'adminconfig.php';
 
 				    if($user['isadmin']!=true){
 				    	if($db->query("DELETE FROM ".$subscript."pollvotes WHERE userid='$userid'") && $db->query("DELETE FROM ".$subscript."polls WHERE userid='$userid'") && $db->query("DELETE FROM ".$subscript."users WHERE id='$userid'")){
+
+				    		if(strcmp($user['photo'],"files/default.png")!=0){
+				    			unlink("../".$user['photo']);   // Delete Profile Photo
+				    		}
+
 							echo "<br><br>User Successfully Deleted.";
 							header("refresh:2;url=allusers.php");
 							exit();

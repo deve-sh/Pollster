@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login</title>
+	<title><?php echo $appname." - "; ?>Login</title>
 	<?php include 'inc/styles.html'; ?>
 </head>
 <body class="installset">
@@ -18,6 +18,7 @@
 				?>
 					<!-- LOGIN FORM -->
 					<form action="" method="POST" id='installform'>
+						<h2>Login</h2>
 						<input type="email" name="email" placeholder="Email Address" required="true" autocomplete="false" /><br><br>
 						<input type="password" name="password" placeholder="Password" required="true" autocomplete="false"/>
 						<br><br>
@@ -65,5 +66,6 @@
 		?>
 		</div>
 	</main>
+	<?php include 'footer.php'; ?>
 </body>
 </html>

@@ -67,27 +67,26 @@ include 'adminconfig.php';
 
 					?>
 					<h2>style.css - Main File</h2>
-					<textarea name="mainstyle" required class="styletextarea">
-						<?php echo $mainstylestring; ?>
-					</textarea>
+
+					<textarea name="mainstyle" required class="styletextarea"><?php echo $mainstylestring; ?></textarea>
 
 					<h2>smallscreen.css - For Tablets</h2>
-						For Screens of Width upto 900px. <br><br>
-					<textarea class="styletextarea" required name='smallscreen'>
-						<?php echo $smallscreenstring; ?>
-					</textarea>
+						For Screens of Width upto 900px. 
+					<br><br>
+					<textarea class="styletextarea" required name='smallscreen'><?php echo $smallscreenstring; ?></textarea>
 
 					<h2>ultrasmall.css - For Smartphones</h2>
-						For Screens Of Width upto 600px. <br><br>
-					<textarea class="styletextarea" name='ultrasmall' required>
-						<?php echo $ultrasmallstring; ?>
-					</textarea>
+						For Screens Of Width upto 600px.
+					<br><br>
+					<textarea class="styletextarea" name='ultrasmall' required><?php echo $ultrasmallstring; ?></textarea>
 
 					<?php
 				?>
 				<br><br>
 				<button class="submitbutton" style="width: 100%;">Update Styles</button>
 				</form>
+				<br>
+				<a href="forumsettings.php"><button class="removebutton">Back</button></a>
 			</main>
 			<?
 

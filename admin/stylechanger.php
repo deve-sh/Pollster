@@ -30,7 +30,7 @@ include('adminconfig.php');
 					fclose($smallscreenfile);
 					fclose($ultrasmallfile);
 					
-					header("refresh:1;url=forumsettings.php");
+					header("refresh:1;url=templater.php");
 					exit();
 				}
 				else{

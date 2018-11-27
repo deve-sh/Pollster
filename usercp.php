@@ -89,8 +89,8 @@ include 'inc/config.php';
 								while($poll=$db->fetch($pollquery)){
 									echo "<div class='userpoll'>
 									<div class='left'>
-										<span class='title'>".$poll['title']."
-										</span>&nbsp&nbsp<span class='time'>".$poll['date_created']."</span>
+										<a href='viewpoll.php?userid=".$_SESSION['polluserid']."&pollid=".$poll['pollid']."' target='_blank'><span class='title'>".$poll['title']."
+										</span></a>&nbsp&nbsp<span class='time'>".$poll['date_created']."</span>
 									</div>
 									<div class='right' align='center'>
 										<a href='removepoll.php?pollid=".$poll['pollid']."'><button class='userremovebutton'>Remove</button></a>
@@ -142,11 +142,12 @@ include 'inc/config.php';
 								while($poll=$db->fetch($pollquery)){
 									echo "<div class='userpoll'>
 									<div class='left'>
-									<span class='title'>".$poll['title']."
-									</span>&nbsp&nbsp<span class='time'>".$poll['date_created']."</span></div>
-									<div class='right' align='center'>
-									<a href='removepoll.php?pollid=".$poll['pollid']."'><button class='userremovebutton'>Remove</button></a>
+										<a href='viewpoll.php?userid=".$_SESSION['polluserid']."&pollid=".$poll['pollid']."' target='_blank'><span class='title'>".$poll['title']."
+										</span></a>&nbsp&nbsp<span class='time'>".$poll['date_created']."</span>
 									</div>
+									<div class='right' align='center'>
+										<a href='removepoll.php?pollid=".$poll['pollid']."'><button class='userremovebutton'>Remove</button></a>
+										</div>
 									</div><br>";
 								} 
 

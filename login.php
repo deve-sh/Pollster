@@ -30,8 +30,8 @@
 					</form>
 				<?php
 
-				$email=$_POST['email'];
-				$password=$_POST['password'];
+				$email=$db->escape($_POST['email']);
+				$password=$db->escape($_POST['password']);
 
 				if(isset($_POST['submit']) && $email && $password){
 					if($db->numrows($db->query("SELECT * FROM ".$subscript."users WHERE email='".$email."'"))==1){

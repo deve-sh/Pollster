@@ -23,7 +23,7 @@
 
 			// INSTALLATION VARIABLES
 			
-			$subscript=$_POST['subscript'];
+			$subscript=escapestr($_POST['subscript']);
 
 			if(!$subscript){
 				$subscript="poll_";
@@ -31,11 +31,11 @@
 
 			$errors=0;          // Error Counting Variable.
 
-			$dbvars=array("host" => $_POST['host'],"username" => $_POST['username'],"password" => $_POST['password'],"dbname" => $_POST['dbname'],"subscript"=>$subscript);
+			$dbvars=array("host" => escapestr($_POST['host']),"username" => escapestr($_POST['username']),"password" => escapestr($_POST['password']),"dbname" => escapestr($_POST['dbname']),"subscript"=>escapestr($subscript));
 
-			$appvars=array("appname" => $_POST['appname'],"appemail" => $_POST['appemail']);
+			$appvars=array("appname" => escapestr($_POST['appname']),"appemail" => escapestr($_POST['appemail']));
 
-			$adminvars=array("adminname"=>$_POST['adminname'],"adminpass"=>$_POST['adminpass'],"adminemail"=>$_POST['adminemail']);
+			$adminvars=array("adminname"=>escapestr($_POST['adminname']),"adminpass"=>escapestr($_POST['adminpass']),"adminemail"=>escapestr($_POST['adminemail']));
 
 			// Following are loops to check whether all the required variables are truthy or not.
 
@@ -73,16 +73,6 @@
 					$db->query("DROP TABLE IF EXISTS ".$subscript."users");
 
 					// Loops to Escape every single string to avoid XXS Attacks or SQL Injection.
-
-					foreach ($dbvars as $key => $value) {
-						if(strcmp($key,"password")!=0){
-							$dbvars[$key]=$db->escape($dbvars[$key]);
-						}
-					}
-
-					foreach ($adminvars as $key => $value) {
-						$adminvars[$key]=$db->escape($adminvars[$key]);
-					}
 
 					$agreement = $_POST['agreement'];  // User Agreement
 

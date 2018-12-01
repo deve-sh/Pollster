@@ -57,4 +57,17 @@
 
         return $salt;       
     }
+
+    function escapestr($unescaped) {
+      $replacements = array(
+         "\x00"=>'\x00',
+         "\n"=>'\n',
+         "\r"=>'\r',
+         "\\"=>'\\\\',
+         "'"=>"\'",
+         '"'=>'\"',
+         "\x1a"=>'\x1a'
+      );
+      return strtr($unescaped,$replacements);
+    }
 ?>

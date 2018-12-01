@@ -66,7 +66,9 @@
          "\\"=>'\\\\',
          "'"=>"\'",
          '"'=>'\"',
-         "\x1a"=>'\x1a'
+         "\x1a"=>'\x1a',
+         "<"=>'&lt;',
+         ">"=>'&gt;'
       );
       return strtr($unescaped,$replacements);
     }

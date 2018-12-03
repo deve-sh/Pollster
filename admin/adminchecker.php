@@ -4,7 +4,7 @@
    $handle1=fopen("../inc/confirm.txt", "r");
    $handle2=fopen("../inc/config.php", "r");
    $handle3=fopen("adminconfig.php", "r");
-   $handle4=fopen("../inc/interconfig.php", "r")
+   $handle4=fopen("../inc/interconfig.php", "r");
 
    $text1=fread($handle1, filesize("../inc/confirm.txt"));
    $text2=fread($handle2, filesize("../inc/config.php"));

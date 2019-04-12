@@ -10,7 +10,7 @@
   		/* Database Connector Function. */
 
      	function connect($host,$username,$password,$dbname){
-     		if($host=="" || $username=="" || $password=="" || $dbname=="")
+     		if($host=="" || $username=="" || $dbname=="")
      		{
      			echo "<br/><br/>Information insufficient for connection.";
      			return false;

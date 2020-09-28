@@ -20,7 +20,7 @@ function getpolldetails(pollid,userid){
 			    [
 				     {
 				     	"title":"Who is the best?",
-				     	"options":["Devesh Kumar","Nidhi Ringe","Zaheer Khan","Ayush Kumar"],
+				     	"options":["XYZ", "ABC"],
 				     	"totalvotes":90
 				     },
 				     {
